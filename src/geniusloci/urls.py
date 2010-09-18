@@ -14,7 +14,7 @@ urlpatterns = patterns('',
     
     # Uncomment the next line to enable the admin:
     # (r'^admin/', include(admin.site.urls)),
-	(r'', include('facebook.urls')),
+	(r'', include('facebook_oauth.urls')),
 	url(r'^$', 'geniusloci.loc.views.index'),
 	(r'^geo/$', 'geniusloci.loc.views.geo'),
 	(r'^p/(?P<city>).*/(?P<slug>).*/(?P<id>\d+)/$', 'geniusloci.loc.views.place'),

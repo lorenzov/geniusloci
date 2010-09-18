@@ -85,10 +85,10 @@ TEMPLATE_DIRS = (
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-	'facebook.context_processors.facebook',
+	'facebook_oauth.context_processors.facebook',
 )
 
-AUTHENTICATION_BACKENDS = ('geniusloci.facebook.backend.FacebookBackend')
+AUTHENTICATION_BACKENDS = ('geniusloci.facebook_oauth.backend.FacebookBackend')
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -96,7 +96,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
 	'geniusloci.loc',
-	'facebook',
+	'facebook_oauth',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
 )
