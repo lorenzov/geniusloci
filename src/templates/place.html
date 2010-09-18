@@ -1,28 +1,9 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<title>GL Demo</title>
 
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
-<style type="text/css" media="screen">@import "/static/iui.css";</style>
-<script type="application/x-javascript" src="/static/iui.js"></script>
-
-</head>
-<body>
-
-<div class="toolbar">
-    <h1 id="pageTitle">{{place.name}}</h1>
-    <a id="backButton" class="button" href="#"></a>
-    <!--<a class="button" href="#searchForm">Search</a>-->
-</div>
-
-<div id="placedata" class="panel">
-
+<div id="placedata" class="panel" title="{{place.name}}">
+<<a class="button" href="#searchForm">Mi piace</a>
 <h2>
 
 {{place.address}}<br/>{{place.foursquare_category}}
 </h2>
 
 </div>
-</body>
-</html>
-
