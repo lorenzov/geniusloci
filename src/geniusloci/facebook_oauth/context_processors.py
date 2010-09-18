@@ -1,4 +1,4 @@
-from facebook.models import FacebookUser
+from facebook_oauth.models import FacebookUser
 
 def facebook(request):
 	try:

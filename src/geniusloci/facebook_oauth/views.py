@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 from django.conf import settings
 from django.contrib.sites.models import Site
 from django.contrib.auth import login, logout, authenticate
-from facebook.models import *
+from facebook_oauth.models import *
 import urllib, cgi, simplejson
 		
 def authenticate_view(request):

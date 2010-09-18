@@ -1,6 +1,6 @@
 from django.contrib.sites.models import Site
 from django.conf import settings
-from facebook.models import *
+from facebook_oauth.models import *
 import urllib, cgi, simplejson
 
 class FacebookBackend:

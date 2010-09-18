@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import *
-from facebook.views import authenticate_view,logout_view,register
+from facebook_oauth.views import authenticate_view,logout_view,register
 
 urlpatterns = patterns('',
     url(r'^authenticate/?$', view=authenticate_view,name='authenticate'),
