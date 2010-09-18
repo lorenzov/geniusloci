@@ -36,7 +36,7 @@ def geo(request):
 			name = venue['name'].encode('ascii', 'ignore')
 			distance = venue['distance']
 			address = venue['address'].encode('ascii', 'ignore')
-			city = venue['city']
+			city = venue['city'].encode('ascii', 'ignore')
 			category = None
 			try:
 				category = venue['primarycategory']
@@ -58,8 +58,7 @@ def geo(request):
 				place.geolat = Decimal(str(geolat))
 				place.geolong = Decimal(str(geolong))
 				print str(place.geolong)
-				place.save()
-			print place.name	
+				place.save()	
 			venues.append(place)
 		c = RequestContext(request, {'venues': venues})
 		t = loader.get_template('geo.html')
