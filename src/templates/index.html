@@ -1,0 +1,24 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>iUI Music Demo</title>
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+<style type="text/css" media="screen">@import "../iui/iui.css";</style>
+<script type="application/x-javascript" src="../iui/iui.js"></script>
+
+<script>
+navigator.geolocation.getCurrentPosition(success, fail);
+// success callback, gets passed position object
+function success(position) // 'position' can be named anything
+{
+	window.location ='/geo/?lat=' + position.coords.latitude + '&lon=' + position.coords.longitude; 
+	
+}
+
+function fail(){
+	document.write('fail');
+}
+
+</script>
+</head>
+<body>
