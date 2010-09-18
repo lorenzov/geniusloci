@@ -97,7 +97,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
 	'geniusloci.loc',
 	'facebook',
-	'django.contrib.gis',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
 )
