@@ -1,0 +1,25 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>GL Demo</title>
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+<style type="text/css" media="screen">@import "/static/iui.css";</style>
+<script type="application/x-javascript" src="/static/iui.js"></script>
+
+
+
+<div class="toolbar">
+    <h1 id="pageTitle">Places near you</h1>
+    <a id="backButton" class="button" href="#"></a>
+    <a class="button" href="#searchForm">Search</a>
+</div>
+
+<ul id="home" title="Places" selected="true">
+	{%for place in venues%}
+    <li><a href="/p/{{place.city}}/{{place.slug}}/{{place.id}}/">{{place.name}}</a></li>
+    {%endfor%}
+
+</ul>
+
+</head>
+<body>
