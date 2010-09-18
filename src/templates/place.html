@@ -10,17 +10,22 @@
 <body>
 
 <div class="toolbar">
-    <h1 id="pageTitle">Places near you</h1>
+    <h1 id="pageTitle">{{place.name}}</h1>
     <a id="backButton" class="button" href="#"></a>
-    <a class="button" href="#searchForm">Search</a>
+    <!--<a class="button" href="#searchForm">Search</a>-->
 </div>
 
-<ul id="home" title="Places" selected="true">
-	{%for place in venues%}
-    <li><a href="/p/{{place.city}}/{{place.slug}}/{{place.id}}/">{{place.name}}</a></li>
-    {%endfor%}
+<div class="panel">
 
-</ul>
+<h2>
+
+{{place.address}}
+</h2>
+<h3>
+{{place.foursquare_category}}
+</h3>
+	
+</div>
 </body>
 </html>
 

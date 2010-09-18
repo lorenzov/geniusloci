@@ -72,10 +72,14 @@ def geo(request):
 def place(request, city, slug, id):
 	place = None
 	try:
-		place = Place.objects.get(id)
+		place = Place.objects.get(pk = id)
 	except:
 		return HttpResponseServerError(id)
+	c = RequestContext(request, {'place': place})
+	t = loader.get_template('place.html')
+	return HttpResponse(t.render(c))	
+	
 		
-	return HttpResponse(place.name)
+	
 	
 	
