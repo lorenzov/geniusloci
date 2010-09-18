@@ -51,7 +51,7 @@ def geo(request):
 			place, created = Place.objects.get_or_create(foursquare_id__exact = f_id)
 			if created == True:
 				place.city = city.lower()
-				place.name = name
+				place.name = name.encode('ascii', 'ignore')
 				place.address = address
 				place.foursquare_id = f_id
 				place.foursquare_category = category
