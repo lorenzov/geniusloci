@@ -33,14 +33,14 @@ def geo(request):
 	if len(groups)> 0:
 		for venue in groups[0]['venues']:
 			
-			name = venue['name']
-			distance = venue['distance']
-			address = venue['address']
+			name = venue['name'].encode('ascii', 'ignore')
+			distance = venue['distance'].encode('ascii', 'ignore')
+			address = venue['address'].encode('ascii', 'ignore')
 			city = venue['city']
 			category = None
 			try:
 				category = venue['primarycategory']
-				category = category['fullpathname']
+				category = category['fullpathname'].encode('ascii', 'ignore')
 			except:
 				pass
 			f_id = venue['id']
