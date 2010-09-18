@@ -34,7 +34,7 @@ def geo(request):
 		for venue in groups[0]['venues']:
 			
 			name = venue['name'].encode('ascii', 'ignore')
-			distance = venue['distance'].encode('ascii', 'ignore')
+			distance = venue['distance']
 			address = venue['address'].encode('ascii', 'ignore')
 			city = venue['city']
 			category = None
