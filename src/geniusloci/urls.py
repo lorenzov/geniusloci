@@ -16,8 +16,9 @@ urlpatterns = patterns('',
     # (r'^admin/', include(admin.site.urls)),
 	(r'', include('facebook_oauth.urls')),
 	url(r'^$', 'geniusloci.loc.views.index'),
-	(r'^geo/$', 'geniusloci.loc.views.geo'),
-	(r'^p/(?P<slug>).*/(?P<id>\d+)/$', 'geniusloci.loc.views.place'),
+	
+	(r'^mobile/geo/$', 'geniusloci.loc.views.geo'),
+	(r'^mobile/p/(?P<slug>).*/(?P<id>\d+)/$', 'geniusloci.loc.views.place'),
 	(r'^static/(?P<path>.*)$', 'django.views.static.serve',
 	        {'document_root': '/home/ubuntu/geniusloci/src/iui/'}),
 	

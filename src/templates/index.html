@@ -7,11 +7,21 @@
 <script type="application/x-javascript" src="/static/iui.js"></script>
 
 <script>
-navigator.geolocation.getCurrentPosition(success, fail);
-// success callback, gets passed position object
+
+
+if((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) { 
+
+   if (document.cookie.indexOf("iphone_redirect=false") == -1){
+		navigator.geolocation.getCurrentPosition(success, fail);
+			// success callback, gets passed position object
+			
+	}
+	
+}
+
 function success(position) // 'position' can be named anything
 {
-	window.location ='/geo/?lat=' + position.coords.latitude + '&lon=' + position.coords.longitude; 
+	window.location ='mobile/geo/?lat=' + position.coords.latitude + '&lon=' + position.coords.longitude; 
 	
 }
 
