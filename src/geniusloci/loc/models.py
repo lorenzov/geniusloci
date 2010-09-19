@@ -13,5 +13,8 @@ class Place(models.Model):
 	foursquare_category = models.CharField(max_length = 255, blank = True, null = True)
 	
 	def slug(self):
-		return slugify(self.name)
+		if self.city != None:
+			return slugify(self.city + ' ' +self.name)
+		else:
+			return slugify(self.name)
 	
