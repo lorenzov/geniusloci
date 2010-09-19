@@ -69,7 +69,7 @@ def geo(request):
 	return HttpResponse(resp + '</body></html>')
 	
 	
-def place(request, city, slug, id):
+def place(request, slug, id):
 	place = None
 	try:
 		place = Place.objects.get(pk = id)
