@@ -32,3 +32,18 @@ function fail(){
 </script>
 </head>
 <body>
+	
+</body>
+<h1>GL demo</h1>
+
+<p>
+	<h3>Here's a list of the latest places</h3>
+	<br/>
+	{%for place in places%}
+	<a href="/p/{{place.slug}}/{{place.id}}/">{{place.name}}</a><br/>
+	{%endfor%}
+	
+	
+</p>
+
+</html>

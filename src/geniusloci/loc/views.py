@@ -15,7 +15,9 @@ import foursquare
 from decimal import *
 
 def index(request):
-	c = RequestContext(request, {'test': 'test'})
+	
+	places = Place.objects.all().order_by('-id')[:10]
+	c = RequestContext(request, {'places': places})
 	t = loader.get_template('index.html')
 	return HttpResponse(t.render(c))
 	return HttpResponse('d')#render_to_response('index.html', template_context, context_instance = RequestContext(request))
