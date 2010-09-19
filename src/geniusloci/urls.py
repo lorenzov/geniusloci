@@ -17,8 +17,12 @@ urlpatterns = patterns('',
 	(r'', include('facebook_oauth.urls')),
 	url(r'^$', 'geniusloci.loc.views.index'),
 	
+	
+	(r'^p/(?P<slug>).*/(?P<id>\d+)/$', 'geniusloci.loc.views.place'),
+	
+	#mobile site
 	(r'^mobile/geo/$', 'geniusloci.loc.views.geo'),
-	(r'^mobile/p/(?P<slug>).*/(?P<id>\d+)/$', 'geniusloci.loc.views.place'),
+	(r'^mobile/p/(?P<slug>).*/(?P<id>\d+)/$', 'geniusloci.loc.views.mobile_place'),
 	(r'^static/(?P<path>.*)$', 'django.views.static.serve',
 	        {'document_root': '/home/ubuntu/geniusloci/src/iui/'}),
 	

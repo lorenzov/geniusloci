@@ -67,8 +67,9 @@ def geo(request):
 			
 	print lat
 	return HttpResponse(resp + '</body></html>')
-	
-	
+
+
+
 def place(request, slug, id):
 	place = None
 	try:
@@ -77,6 +78,17 @@ def place(request, slug, id):
 		return HttpResponseServerError(id)
 	c = RequestContext(request, {'place': place})
 	t = loader.get_template('place.html')
+	return HttpResponse(t.render(c))	
+		
+	
+def mobile_place(request, slug, id):
+	place = None
+	try:
+		place = Place.objects.get(pk = id)
+	except:
+		return HttpResponseServerError(id)
+	c = RequestContext(request, {'place': place})
+	t = loader.get_template('mobile_place.html')
 	return HttpResponse(t.render(c))	
 	
 		
