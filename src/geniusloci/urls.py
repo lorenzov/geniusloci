@@ -22,6 +22,7 @@ urlpatterns = patterns('',
 	
 	#mobile site
 	(r'^mobile/geo/$', 'geniusloci.loc.views.geo'),
+	(r'^mobile/map(?P<id>\d+)/$', 'geniusloci.loc.views.mobile_map'),
 	(r'^mobile/p/(?P<slug>).*/(?P<id>\d+)/$', 'geniusloci.loc.views.mobile_place'),
 	(r'^static/(?P<path>.*)$', 'django.views.static.serve',
 	        {'document_root': '/home/ubuntu/geniusloci/src/iui/'}),

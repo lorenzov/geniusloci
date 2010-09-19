@@ -5,28 +5,8 @@
 <h2>
 
 <b>{{place.city}}</b> {{place.address}}<br/>{{place.foursquare_category}}<br/>
-
+<a href="/mobile/map/{{place.id}}/" target="_self">Map</a>
 </h2>
-<div id="map_canvas" style="width: 280px; height: 342px; "></div>
-	
-</div>
-</div>
-<script>
-var map;
-  
-function initializeMap() {
-    if (GBrowserIsCompatible()) {
-        //---shows the Google Maps in the DIV element---
-        map = new GMap2(document.getElementById("map_canvas"));
- 
-        //---set it to a particular location---
-        map.setCenter(new GLatLng(37.4419, -122.1419), 18);        
- 
-        //---set the map type to Hybrid---
-        map.setMapType(G_HYBRID_MAP);
-    }
-}
-initializeMap();
 
-</script>
+</div>
 
