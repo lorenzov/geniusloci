@@ -93,7 +93,7 @@ def mobile_place(request, slug, id):
 	t = loader.get_template('mobile_place.html')
 	return HttpResponse(t.render(c))	
 	
-def mobile_place(request, id):
+def mobile_map(request, id):
 	place = None
 	try:
 		place = Place.objects.get(pk = id)
