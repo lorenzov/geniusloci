@@ -15,6 +15,7 @@ import foursquare
 from decimal import *
 import cgi
 import logging
+import urllib
 
 
 def login(request):
