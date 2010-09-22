@@ -11,7 +11,6 @@ for place in places:
 	placex = api.get_venue_detail(place.foursquare_id)
 	venue = placex['venue']
 	name = venue['name']
-	distance = venue['distance']
 	address = venue['address']
 	city = venue['city']
 	category = None
