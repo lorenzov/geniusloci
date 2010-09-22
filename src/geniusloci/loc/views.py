@@ -19,46 +19,46 @@ import logging
 
 def login(request):
 	error = None
-
+	logging.debug
 	if request.user.is_authenticated():
 		return HttpResponseRedirect('/home/')
 
-		if request.GET:
-			if 'code' in request.GET:
-				args = {
-					'client_id': '129708490411788',
-					'redirect_uri': 'http://www.euproweb.eu/login/',
-					'client_secret': '359e32a34b5cbe94d452d7465803a20f',
-					'code': request.GET['code'],
-				}
-				logging.debug(args)
-				url = 'https://graph.facebook.com/oauth/access_token?' + urllib.urlencode(args)
-				response = cgi.parse_qs(urllib.urlopen(url).read())
-				access_token = ''
-				try: 
-					access_token = response['access_token'][0]
-				except:
-					return HttpResponse(url)
+	if request.GET:
+		if 'code' in request.GET:
+			args = {
+				'client_id': '129708490411788',
+				'redirect_uri': 'http://www.euproweb.eu/login/',
+				'client_secret': '359e32a34b5cbe94d452d7465803a20f',
+				'code': request.GET['code'],
+			}
+			logging.debug(args)
+			url = 'https://graph.facebook.com/oauth/access_token?' + urllib.urlencode(args)
+			response = cgi.parse_qs(urllib.urlopen(url).read())
+			access_token = ''
+			try: 
+				access_token = response['access_token'][0]
+			except:
+				return HttpResponse(url)
                 
 
-				facebook_session = FacebookSession.objects.get_or_create(
-					access_token=access_token,
-				)[0]
-				expires = response['expires'][0]
-				facebook_session.expires = expires
-				facebook_session.save()
-				logging.debug('session')
-				user = auth.authenticate(token=access_token, request = request)
-				if user:
-					if user.is_active:
-						auth.login(request, user)
-						return HttpResponseRedirect('/home/')
-					else:
-						error = 'AUTH_DISABLED'
+			facebook_session = FacebookSession.objects.get_or_create(
+				access_token=access_token,
+			)[0]
+			expires = response['expires'][0]
+			facebook_session.expires = expires
+			facebook_session.save()
+			logging.debug('session')
+			user = auth.authenticate(token=access_token, request = request)
+			if user:
+				if user.is_active:
+					auth.login(request, user)
+					return HttpResponseRedirect('/home/')
 				else:
-					error = 'AUTH_FAILED'
-			elif 'error_reason' in request.GET:
-				error = 'AUTH_DENIED'
+					error = 'AUTH_DISABLED'
+			else:
+				error = 'AUTH_FAILED'
+		elif 'error_reason' in request.GET:
+			error = 'AUTH_DENIED'
 	return HttpResponseRedirect('/')
 
 
