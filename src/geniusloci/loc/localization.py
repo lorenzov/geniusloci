@@ -1,5 +1,6 @@
 import foursquare
 from geniusloci.loc.models import *
+import facebook_oauth
 categories = ['Arts & Entertainment', 'Arcade', 'Art Galley']
 
 
