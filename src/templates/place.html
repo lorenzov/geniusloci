@@ -48,11 +48,18 @@
 	<br/>
 	<h4><a href="/"><em>Go back</em></a><br/>
 		
-		
-	<div id="map_canvas" style="width:500px; height:350px"></div>
-	
 	<div id="fblike">{% if user.is_authenticated %}
-	<img src='https://graph.facebook.com/{{user.username}}/picture' class=" fb_profile_pic_rendered FB_ElementReady"/>{%endif%}</div>
+		<img src='https://graph.facebook.com/{{user.username}}/picture' class=" fb_profile_pic_rendered FB_ElementReady"/>
+		%nbsp;<a href="/services/like/{{place.id}}/">I Like this place!</a>
+		
+		{%endif%}<br/>
+		
+		People who like this place:<br/>
+		{%for like in likes%}<img src='https://graph.facebook.com/{{like.user.username}}/picture' class=" fb_profile_pic_rendered FB_ElementReady"/>{%endfor%}</div>
+			
+			<div id="map_canvas" style="width:500px; height:350px"></div>
+	
+	
 	
 	<script> 
 
