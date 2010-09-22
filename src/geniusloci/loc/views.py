@@ -24,9 +24,9 @@ def login(request):
 		if request.GET:
 			if 'code' in request.GET:
 				args = {
-					'client_id': '120761471302389',
-					'redirect_uri': 'http://www.discotheque.me/login/',
-					'client_secret': '25e65e879035f7a013e2337b6d9c149d',
+					'client_id': '129708490411788',
+					'redirect_uri': 'http://www.euproweb.eu/login/',
+					'client_secret': '359e32a34b5cbe94d452d7465803a20f',
 					'code': request.GET['code'],
 				}
 
