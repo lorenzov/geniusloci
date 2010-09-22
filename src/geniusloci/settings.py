@@ -85,7 +85,6 @@ TEMPLATE_DIRS = (
 )
 
 
-AUTHENTICATION_BACKENDS = ('geniusloci.facebook_oauth.backend.FacebookBackend')
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
