@@ -1,6 +1,9 @@
 import foursquare
 from geniusloci.loc.models import *
 import facebook_oauth
+
+import time
+
 categories = ['Arts & Entertainment', 'Arcade', 'Art Galley']
 
 
@@ -28,3 +31,5 @@ for place in places:
 	place.city = city
 	place.category = category
 	place.save()
+	time.sleep(10)
+	

@@ -100,3 +100,6 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
 )
+
+APP_ID = 129708490411788
+APP_SECRET = '359e32a34b5cbe94d452d7465803a20f'
