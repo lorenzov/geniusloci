@@ -129,7 +129,9 @@ def place(request, slug, id):
 		place = Place.objects.get(pk = id)
 	except:
 		return HttpResponseServerError(id)
-	c = RequestContext(request, {'place': place})
+		
+	likes = Like.objects.filter(place__exact = place)
+	c = RequestContext(request, {'place': place, 'likes': likes, })
 	t = loader.get_template('place.html')
 	return HttpResponse(t.render(c))	
 		
@@ -142,7 +144,7 @@ def services_like(request, id):
 			like = Like(place = place)
 			like.user = request.user
 			like.save()
-		break
+		pass
 	return HttpResponseRedirect("/p/" + str(place.slug()) + "/" + str(place.id) + "/")
 	
 	
