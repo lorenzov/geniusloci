@@ -42,7 +42,7 @@ def geo(request):
 			category = None
 			try:
 				category = venue['primarycategory']
-				category = category['fullpathname'].encode('ascii', 'ignore')
+				category = category['fullpathname']
 			except:
 				pass
 			f_id = venue['id']
