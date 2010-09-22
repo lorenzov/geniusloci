@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
 <title>{{place.name}} - GL</title>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
@@ -7,6 +7,8 @@
 <script type="text/javascript"
     src="http://maps.google.com/maps/api/js?sensor=true">
 </script>
+<script type="text/javascript" src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php"></script> 
+
 <script type="text/javascript">
   function initialize_map() {
     var latlng = new google.maps.LatLng({{place.geolat}}, {{place.geolong}});
@@ -26,6 +28,15 @@
   }
 
 </script>
+<script type="text/javascript" src="http://www.google.com/jsapi?key=ABQIAAAAeZHdmk7IDlnt6hw7bynNARTiKrmvSuRyOUKEganu8A-QaYUeARS27gAnpOMDycqa3URNPN1fP-_z7g"></script>
+<script language="Javascript" type="text/javascript">
+    //<![CDATA[
+
+    google.load("jquery", "1.4.2");
+	google.load("swfobject", "2.2");
+
+	
+</script>
 </head>
 
 <body onload="initialize_map();">
@@ -39,5 +50,23 @@
 		
 		
 	<div id="map_canvas" style="width:500px; height:350px"></div>
+	
+	<div id="fblike"></div>
+	
+	<script> 
+
+	function InitConnected(){
+		$('fblike').text('like this place?');
+		}
+
+		function InitNotConnected(){
+
+		}	
+
+
+
+	FB.init("f80b5de040e212abb4c6ad89a96dfa2e", "/xd_receiver.html", {"ifUserConnected": InitConnected, "ifUserNotConnected": InitNotConnected, "reloadIfSessionStateChanged": false});
+
+	</script>
 </body>
 </html>
