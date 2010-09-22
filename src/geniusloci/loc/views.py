@@ -13,6 +13,7 @@ from django.template import Context, loader, RequestContext
 from geniusloci.loc.models import *
 import foursquare
 from decimal import *
+import cgi
 
 
 def login(request):
