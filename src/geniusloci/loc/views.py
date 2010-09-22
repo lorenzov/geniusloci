@@ -126,7 +126,7 @@ def geo(request):
 			
 	print lat
 	return HttpResponse(resp + '</body></html>')
-
+ 
 
 
 def place(request, slug, id):
