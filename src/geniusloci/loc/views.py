@@ -58,7 +58,7 @@ def login(request):
 					error = 'AUTH_FAILED'
 			elif 'error_reason' in request.GET:
 				error = 'AUTH_DENIED'
-	return HttpResponse('logged')
+	return HttpResponseRedirect('/')
 
 
 
