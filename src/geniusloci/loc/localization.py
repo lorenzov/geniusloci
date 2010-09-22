@@ -1,3 +1,5 @@
+import foursquare
+from geniusloci.loc.models import *
 categories = ['Arts & Entertainment', 'Arcade', 'Art Galley']
 
 
