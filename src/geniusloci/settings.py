@@ -93,7 +93,6 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
 	'geniusloci.loc',
-	'facebook_oauth',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
 )
