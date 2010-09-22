@@ -22,7 +22,7 @@ def login(request):
 	error = None
 	logging.debug
 	if request.user.is_authenticated():
-		return HttpResponseRedirect('/home/')
+		return HttpResponseRedirect('/')
 
 	if request.GET:
 		if 'code' in request.GET:
