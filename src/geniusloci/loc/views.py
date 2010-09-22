@@ -35,10 +35,10 @@ def geo(request):
 	if len(groups)> 0:
 		for venue in groups[0]['venues']:
 			
-			name = venue['name'].encode('ascii', 'ignore')
+			name = venue['name']
 			distance = venue['distance']
-			address = venue['address'].encode('ascii', 'ignore')
-			city = venue['city'].encode('ascii', 'ignore')
+			address = venue['address']
+			city = venue['city']
 			category = None
 			try:
 				category = venue['primarycategory']
@@ -53,7 +53,7 @@ def geo(request):
 			place, created = Place.objects.get_or_create(foursquare_id__exact = f_id)
 			if created == True:
 				place.city = city.lower()
-				place.name = name.encode('ascii', 'ignore')
+				place.name = name
 				place.address = address
 				place.foursquare_id = f_id
 				place.foursquare_category = category

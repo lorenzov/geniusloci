@@ -11,6 +11,7 @@ class Place(models.Model):
 	geolat = models.DecimalField('latitude', max_digits=13, decimal_places=10, blank=True, null=True, db_index = True)
 	city = models.CharField(max_length = 255, blank = True)
 	foursquare_category = models.CharField(max_length = 255, blank = True, null = True)
+	validated = models.BooleanField(default = False)
 	
 	def slug(self):
 		if self.city != None:
