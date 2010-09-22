@@ -52,12 +52,11 @@
 	<div id="map_canvas" style="width:500px; height:350px"></div>
 	
 	<div id="fblike">{% if user.is_authenticated %}
-	<fb:profile-pic uid="{{user.username}}" size="thumb"/>{%endif%}</div>
+	<img src='https://graph.facebook.com/{{user.username}}/picture' class=" fb_profile_pic_rendered FB_ElementReady"/>{%endif%}</div>
 	
 	<script> 
 
 	function InitConnected(){
-		$('fblike').text('like this place?');
 		}
 
 		function InitNotConnected(){
@@ -66,7 +65,7 @@
 
 
 
-	FB.init("f80b5de040e212abb4c6ad89a96dfa2e", "/xd_receiver.html", {"ifUserConnected": InitConnected, "ifUserNotConnected": InitNotConnected, "reloadIfSessionStateChanged": false});
+	FB.init("f80b5de040e212abb4c6ad89a96dfa2e", "/xd_receiver.html", {"ifUserConnected": InitConnected, "ifUserNotConnected": InitNotConnected});
 
 	</script>
 </body>
