@@ -1,6 +1,7 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
 <title>GL demo</title>
+<script type="text/javascript" src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php"></script> 
 
 
 
@@ -42,6 +43,26 @@ function fail(){
 	{%endfor%}
 	
 	
+	
+<br/>
+<a href="https://graph.facebook.com/oauth/authorize?client_id=129708490411788&redirect_uri=http://www.euproweb.eu/login/&scope=publish_stream,email&display=popup">
+  <img src="http://developers.facebook.com/images/devsite/login-button.png" border="0"/>
+</a>
+	<script> 
+
+	function InitConnected(){
+
+		}
+
+		function InitNotConnected(){
+
+		}	
+
+
+
+	FB.init("f80b5de040e212abb4c6ad89a96dfa2e", "/xd_receiver.html", {"ifUserConnected": InitConnected, "ifUserNotConnected": InitNotConnected, "reloadIfSessionStateChanged": false});
+
+	</script>	
 </p>
 </body>
 </html>
