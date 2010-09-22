@@ -22,4 +22,8 @@ for place in places:
 	print name
 	print city
 	print category
-	break
+	place.name = name
+	place.address = address
+	place.city = city
+	place.category = category
+	place.save()
