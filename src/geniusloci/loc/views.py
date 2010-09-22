@@ -14,6 +14,54 @@ from geniusloci.loc.models import *
 import foursquare
 from decimal import *
 
+
+def login(request):
+	error = None
+
+	if request.user.is_authenticated():
+		return HttpResponseRedirect('/home/')
+
+		if request.GET:
+			if 'code' in request.GET:
+				args = {
+					'client_id': '120761471302389',
+					'redirect_uri': 'http://www.discotheque.me/login/',
+					'client_secret': '25e65e879035f7a013e2337b6d9c149d',
+					'code': request.GET['code'],
+				}
+
+				url = 'https://graph.facebook.com/oauth/access_token?' + urllib.urlencode(args)
+				response = cgi.parse_qs(urllib.urlopen(url).read())
+				access_token = ''
+				try: 
+					access_token = response['access_token'][0]
+				except:
+					return HttpResponse(url)
+                
+
+				facebook_session = FacebookSession.objects.get_or_create(
+					access_token=access_token,
+				)[0]
+				expires = response['expires'][0]
+				facebook_session.expires = expires
+				facebook_session.save()
+
+				user = auth.authenticate(token=access_token, request = request)
+				if user:
+					if user.is_active:
+						auth.login(request, user)
+						return HttpResponseRedirect('/home/')
+					else:
+						error = 'AUTH_DISABLED'
+				else:
+					error = 'AUTH_FAILED'
+			elif 'error_reason' in request.GET:
+				error = 'AUTH_DENIED'
+	    return HttpResponse('logged')
+
+
+
+
 def index(request):
 	
 	places = Place.objects.all().order_by('-id')[:10]

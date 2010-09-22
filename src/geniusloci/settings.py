@@ -84,9 +84,6 @@ TEMPLATE_DIRS = (
 	'/Users/lorenzoviscanti/geniusloci/src/templates', '/home/ubuntu/geniusloci/src/templates',
 )
 
-TEMPLATE_CONTEXT_PROCESSORS = (
-	'facebook_oauth.context_processors.facebook',
-)
 
 AUTHENTICATION_BACKENDS = ('geniusloci.facebook_oauth.backend.FacebookBackend')
 INSTALLED_APPS = (
@@ -101,5 +98,22 @@ INSTALLED_APPS = (
     # 'django.contrib.admin',
 )
 
+AUTHENTICATION_BACKENDS = (
+    'geniusloci.backends.FacebookBackend',
+)
+
 APP_ID = '129708490411788'
 APP_SECRET = '359e32a34b5cbe94d452d7465803a20f'
+
+FACEBOOK_APPLICATION_SECRET = '359e32a34b5cbe94d452d7465803a20f' 
+API_KEY = 'a48c65eea66a5eff69116b32f1a1fc3a'
+FACEBOOK_API_KEY = 'a48c65eea66a5eff69116b32f1a1fc3a'
+AUTH_PROFILE_MODULE = 'geniusloci.loc.models.UserProfile'
+FACEBOOK_REDIRECT_URI = 'euproweb.eu/login'
+import logging
+logging.basicConfig(
+    level = logging.DEBUG,
+    format = '%(asctime)s %(levelname)s %(message)s',
+    filename = '/tmp/discotheque.log',
+    filemode = 'w'
+)

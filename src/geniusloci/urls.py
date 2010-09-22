@@ -26,5 +26,6 @@ urlpatterns = patterns('',
 	(r'^mobile/p/(?P<slug>).*/(?P<id>\d+)/$', 'geniusloci.loc.views.mobile_place'),
 	(r'^static/(?P<path>.*)$', 'django.views.static.serve',
 	        {'document_root': '/home/ubuntu/geniusloci/src/iui/'}),
+			(r'^xd_receiver\.html$', direct_to_template, {'template': 'xd_receiver.htm'}),
 	
 )
