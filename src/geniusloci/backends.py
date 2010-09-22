@@ -6,7 +6,7 @@ import urllib
 import simplejson 
 import md5
 
-from music.discotheque import models
+from geniusloci.loc import models
 
 class FacebookBackend:
     
