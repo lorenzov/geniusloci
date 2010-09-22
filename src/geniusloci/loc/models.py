@@ -20,6 +20,12 @@ class Place(models.Model):
 			return slugify(self.city + ' ' +self.name)
 		else:
 			return slugify(self.name)
+			
+class Positions(models.Model):
+	geolong = models.DecimalField('longitude', max_digits=13, decimal_places=10, blank=True, null=True, db_index = True)
+	geolat = models.DecimalField('latitude', max_digits=13, decimal_places=10, blank=True, null=True, db_index = True)
+	date = models.DateTimeField(auto_now_add = True)
+	
 class FacebookUser(models.Model):
 	facebook_id = models.CharField(max_length=100, unique=True)
 	contrib_user = models.OneToOneField(User)

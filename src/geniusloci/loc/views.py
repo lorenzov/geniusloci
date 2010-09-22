@@ -18,6 +18,10 @@ import logging
 import urllib
 
 
+def near_me(request):
+	if request.POST:
+		address = request.POST['address']
+
 def login(request):
 	error = None
 	logging.debug
@@ -113,7 +117,9 @@ def geo(request):
 				print str(place.geolong)
 				place.save()	
 			venues.append(place)
-		c = RequestContext(request, {'venues': venues})
+			
+		places = find_near(lat, lon, 0.30)
+		c = RequestContext(request, {'venues': places})
 		t = loader.get_template('geo.html')
 		return HttpResponse(t.render(c))
 			
@@ -155,7 +161,8 @@ def mobile_place(request, slug, id):
 		place = Place.objects.get(pk = id)
 	except:
 		return HttpResponseServerError(id)
-	c = RequestContext(request, {'place': place})
+	likes = Like.objects.filter(place__exact = place)
+	c = RequestContext(request, {'place': place, 'likes': likes})
 	t = loader.get_template('mobile_place.html')
 	return HttpResponse(t.render(c))	
 	
@@ -170,4 +177,22 @@ def mobile_map(request, id):
 	return HttpResponse(t.render(c))		
 	
 	
+#500m = 0.33 miles ca
+def find_near(mylat, mylong, distance, distance_orig = 0):
+	lon1 = mylong - distance/math.fabs(math.cos(math.radians(mylat))*69)
+
+	lon2 = mylong + distance/math.fabs(math.cos(math.radians(mylat))*69)
+
+
+	lat1=mylat - (distance/69)
+	lat2 = mylat+(dist/69)
+	
+	places = Place.objects.filter(geolong__gte = lon1, geolong__lte = lon2, geolat__gte = lat1, geolat__lte = lat2)
+	if places.count > 0:
+		return places
+	if distance_orig == 0:
+		distance_orig = distance
+	elif distance > distance_orig *5: #five times the original distance
+		return []
+	return find_near(mylat, mylong, distance * 2, distance_orig)
 	
