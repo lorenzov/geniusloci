@@ -51,7 +51,8 @@
 		
 	<div id="map_canvas" style="width:500px; height:350px"></div>
 	
-	<div id="fblike"><fb:profile-pic uid="loggedinuser" size="thumb"/></div>
+	<div id="fblike">{% if user.is_authenticated %}
+	<fb:profile-pic uid="{{user.username}}" size="thumb"/>{%endif%}</div>
 	
 	<script> 
 
