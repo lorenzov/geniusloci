@@ -133,6 +133,19 @@ def place(request, slug, id):
 	t = loader.get_template('place.html')
 	return HttpResponse(t.render(c))	
 		
+
+def services_like(request, id):
+	place = Place.objects.get(pk = id)
+	if request.user.is_authenticated():
+	 	count = Like.objects.filter(place__id__exact = id, user__exact = request.user).count()
+		if count == 0:
+			like = Like(place = place)
+			like.user = request.user
+			like.save()
+		break
+	return HttpResponseRedirect("/p/" + str(place.slug()) + "/" + str(place.id) + "/")
+	
+	
 	
 def mobile_place(request, slug, id):
 	place = None

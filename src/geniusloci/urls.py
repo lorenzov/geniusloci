@@ -20,6 +20,7 @@ urlpatterns = patterns('',
 	
 	
 	(r'^p/(?P<slug>).*/(?P<id>\d+)/$', 'geniusloci.loc.views.place'),
+	(r'^services/like/(?P<id>\d+)/$', 'geniusloci.loc.views.services_like'),
 	(r'^login/$', 'geniusloci.loc.views.login'),
 	#mobile site
 	(r'^mobile/geo/$', 'geniusloci.loc.views.geo'),
