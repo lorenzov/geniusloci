@@ -15,12 +15,12 @@ urlpatterns = patterns('',
     
     # Uncomment the next line to enable the admin:
     # (r'^admin/', include(admin.site.urls)),
-	(r'^login/$', 'geniusloci.loc.views.login'),
+	
 	url(r'^$', 'geniusloci.loc.views.index'),
 	
 	
 	(r'^p/(?P<slug>).*/(?P<id>\d+)/$', 'geniusloci.loc.views.place'),
-	
+	(r'^login/$', 'geniusloci.loc.views.login'),
 	#mobile site
 	(r'^mobile/geo/$', 'geniusloci.loc.views.geo'),
 	(r'^mobile/map/(?P<id>\d+)/$', 'geniusloci.loc.views.mobile_map'),
