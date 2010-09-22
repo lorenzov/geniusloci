@@ -113,6 +113,6 @@ import logging
 logging.basicConfig(
     level = logging.DEBUG,
     format = '%(asctime)s %(levelname)s %(message)s',
-    filename = '/tmp/discotheque.log',
+    filename = '/tmp/geniusloci.log',
     filemode = 'w'
 )
