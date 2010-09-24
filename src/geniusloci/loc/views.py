@@ -153,6 +153,11 @@ def geo(request):
 						logging.debug('error saving venue from 4sq')	
 				else:
 					logging.debug('venue already existing')
+				try:	
+					tips = venue['tips']
+					analyze_tips(place, tips)
+				except:
+					logging.debug('can\'t find tips section')
 				venues.append(place)
 			pass#for
 		pass#if
@@ -246,4 +251,28 @@ def find_near(mylat, mylong, distance, distance_orig = 0, null_foursquare_categ 
 		return []
 	logging.debug('new find near query ' + str(distance))
 	return find_near(mylat, mylong, distance * 2, distance_orig)
-	
+
+
+def analyze_tips(place, tips):
+	e_tips = Tip.objects.filter(place__exact = place)
+	for tip in tips:
+		text = tip['text']
+		
+		found = False
+		for e_tip in tips:
+			if e_tip.text.lower() == text.lower():
+				logging.debug('tip existing ' + text)
+				found = True
+				break
+			pass
+		pass
+		
+		if not found:
+			#create new tip
+			newtip = Tip()
+			newtip.text = text
+			newtip.place = place
+			newtip.save()
+		pass
+		
+		
