@@ -199,7 +199,7 @@ def find_near(mylat, mylong, distance, distance_orig = 0, null_foursquare_categ 
 	lat1= mylat - (distance/69)
 	lat2 = mylat+(distance/69)
 	
-	places = Place.objects.filter(geolong__gte = str(lon1), geolong__lte = str(lon2), geolat__gte = str(lat1), geolat__lte = str(lat2), null_foursquare_categ__isnull = False)
+	places = Place.objects.filter(geolong__gte = str(lon1), geolong__lte = str(lon2), geolat__gte = str(lat1), geolat__lte = str(lat2), foursquare_category__isnull = False)
 	logging.debug(connection.queries[len(connection.queries) - 1])
 	if places.count() > 10:
 		return places
