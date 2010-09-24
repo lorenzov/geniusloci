@@ -186,6 +186,8 @@ def mobile_map(request, id):
 	
 #500m = 0.33 miles ca
 def find_near(mylat, mylong, distance, distance_orig = 0):
+	mylong = float(mylong)
+	mylat = float(mylat)
 	lon1 = mylong - distance/math.fabs(math.cos(math.radians(mylat))*69)
 
 	lon2 = mylong + distance/math.fabs(math.cos(math.radians(mylat))*69)
