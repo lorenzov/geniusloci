@@ -88,7 +88,7 @@ def geo(request):
 	api = foursquare.Api()
 	
 	try:
-	groups =  api.get_venues(geolat = lat, geolong = lon, l = 50)['groups']
+		groups =  api.get_venues(geolat = lat, geolong = lon, l = 50)['groups']
 	
 	
 		resp = '<html><body>'
