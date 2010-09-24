@@ -46,6 +46,9 @@
 	<h3>{{place.foursquare_category}}</h3>
 	
 	<br/>
+	<a href="https://graph.facebook.com/oauth/authorize?client_id=129708490411788&redirect_uri=http://www.euproweb.eu/login/?backTo=/p/{{place.slug}}/{{place.id}}/&scope=publish_stream,email&display=popup">
+	  <img src="http://developers.facebook.com/images/devsite/login-button.png" border="0"/>
+	<br/>
 	<h4><a href="/"><em>Go back</em></a><br/>
 		
 	<div id="fblike">{% if user.is_authenticated %}
@@ -75,5 +78,8 @@
 	FB.init("f80b5de040e212abb4c6ad89a96dfa2e", "/xd_receiver.html", {"ifUserConnected": InitConnected, "ifUserNotConnected": InitNotConnected});
 
 	</script>
+	
+	
+	
 </body>
 </html>

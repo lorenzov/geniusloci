@@ -16,6 +16,7 @@ from decimal import *
 import cgi
 import logging
 import urllib
+import math
 
 
 def near_me(request):
@@ -57,6 +58,8 @@ def login(request):
 			if user:
 				if user.is_active:
 					auth.login(request, user)
+					if 'backTo' in request.GET:
+						return HttpResponseRedirect(request.GET['backTo'])
 					return HttpResponseRedirect('/')
 				else:
 					error = 'AUTH_DISABLED'
@@ -111,11 +114,15 @@ def geo(request):
 				place.name = name
 				place.address = address
 				place.foursquare_id = f_id
+				if category == 'None':
+					category = ''
 				place.foursquare_category = category
 				place.geolat = Decimal(str(geolat))
 				place.geolong = Decimal(str(geolong))
-				print str(place.geolong)
-				place.save()	
+				try:
+					place.save()
+				except:
+					pass	
 			venues.append(place)
 			
 		places = find_near(lat, lon, 0.30)
