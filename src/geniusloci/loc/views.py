@@ -198,9 +198,10 @@ def find_near(mylat, mylong, distance, distance_orig = 0):
 	lat2 = mylat+(distance/69)
 	
 	places = Place.objects.filter(geolong__gte = str(lon1), geolong__lte = str(lon2), geolat__gte = str(lat1), geolat__lte = str(lat2))
-	logging.debug(str(connection.queries))
-	if places.count > 0:
+	
+	if places.count() > 0:
 		return places
+	logging.debug(str(connection.queries))
 	if distance_orig == 0:
 		distance_orig = distance
 	elif distance > distance_orig *5: #five times the original distance
