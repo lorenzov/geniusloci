@@ -92,6 +92,7 @@ def geo(request):
 	resp = '<html><body>'
 	venues = []
 	if len(groups)> 0:
+		logging.debug('no.of venues returned from 4sq '  + str(len(venues)))
 		for venue in groups[0]['venues']:
 			
 			name = venue['name']
@@ -123,7 +124,7 @@ def geo(request):
 				try:
 					place.save()
 				except:
-					pass	
+					logging.debug('error saving venue from 4sq')	
 			venues.append(place)
 			
 		places = find_near(lat, lon, 0.30)
