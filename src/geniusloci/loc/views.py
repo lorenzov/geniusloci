@@ -92,7 +92,7 @@ def geo(request):
 	resp = '<html><body>'
 	venues = []
 	if len(groups)> 0:
-		logging.debug('no.of venues returned from 4sq '  + str(len(venues)))
+		logging.debug('no.of venues returned from 4sq '  + str(len(groups[0]['venues']))
 		for venue in groups[0]['venues']:
 			
 			name = venue['name']
@@ -125,6 +125,8 @@ def geo(request):
 					place.save()
 				except:
 					logging.debug('error saving venue from 4sq')	
+			else:
+				logging.debug('venue already existing')
 			venues.append(place)
 			
 		places = find_near(lat, lon, 0.30)
@@ -200,7 +202,7 @@ def find_near(mylat, mylong, distance, distance_orig = 0):
 	
 	places = Place.objects.filter(geolong__gte = str(lon1), geolong__lte = str(lon2), geolat__gte = str(lat1), geolat__lte = str(lat2))
 	logging.debug(connection.queries[len(connection.queries) - 1])
-	if places.count() > 0:
+	if places.count() > 5:
 		return places
 	if distance_orig == 0:
 		distance_orig = distance
