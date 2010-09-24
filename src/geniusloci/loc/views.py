@@ -201,10 +201,10 @@ def find_near(mylat, mylong, distance, distance_orig = 0):
 	
 	if places.count() > 0:
 		return places
-	logging.debug(str(connection.queries))
 	if distance_orig == 0:
 		distance_orig = distance
 	elif distance > distance_orig *5: #five times the original distance
 		return []
+	logging.debug('new find near query ' + str(distance))
 	return find_near(mylat, mylong, distance * 2, distance_orig)
 	
