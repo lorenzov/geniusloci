@@ -38,7 +38,6 @@ def login(request):
 				'client_secret': '359e32a34b5cbe94d452d7465803a20f',
 				'code': request.GET['code'],
 			}
-			logging.debug(args)
 			url = 'https://graph.facebook.com/oauth/access_token?' + urllib.urlencode(args)
 			response = cgi.parse_qs(urllib.urlopen(url).read())
 			access_token = ''
@@ -60,6 +59,7 @@ def login(request):
 				if user.is_active:
 					auth.login(request, user)
 					if 'backTo' in request.GET:
+						logging.debug('backto ' + request.GET['backTo'])
 						return HttpResponseRedirect(request.GET['backTo'])
 					return HttpResponseRedirect('/')
 				else:
@@ -80,7 +80,18 @@ def index(request):
 	t = loader.get_template('index.html')
 	return HttpResponse(t.render(c))
 	return HttpResponse('d')#render_to_response('index.html', template_context, context_instance = RequestContext(request))
+
+
+
+def search(request):
+	query = request.GET['s']
+	places = Place.objects.filter(name__icontains = query)[:50]
+	c = RequestContext(request, {'places': places})
+	t = loader.get_template('index.html')
+	return HttpResponse(t.render(c))
 	
+	
+		
 	
 def geo(request):
 	lat = request.GET.get('lat')
