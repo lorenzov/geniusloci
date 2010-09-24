@@ -18,6 +18,7 @@ import logging
 import urllib
 import math
 from django.db import connection
+import geopy
 
 
 def near_me(request):
