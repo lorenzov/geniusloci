@@ -88,11 +88,11 @@ def locate(request):
 	lat = 0
 	lon = 0
 	try:
-		b = g.geocode(l)
+		b = g.geocode(query)
 		lat = b[1][0]
 		lon = b[1][1]
 	except:
-		return HttpResponse('error')
+		return HttpResponse('error ' + query)
 		
 	return HttpResponseRedirect('/mobile/geo/?lat=' + str(lat) + '&lon=' + str(lon))
 
