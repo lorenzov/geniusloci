@@ -130,14 +130,13 @@ def geo(request):
 					logging.debug('venue already existing')
 				venues.append(place)
 			
-		places = find_near(lat, lon, 0.30)
-		c = RequestContext(request, {'venues': places})
-		t = loader.get_template('geo.html')
-		return HttpResponse(t.render(c))
+	places = find_near(lat, lon, 0.30)
+	c = RequestContext(request, {'venues': places})
+	t = loader.get_template('geo.html')
+	return HttpResponse(t.render(c))
 			
 			
-	print lat
-	return HttpResponse(resp + '</body></html>')
+	
  
 
 
