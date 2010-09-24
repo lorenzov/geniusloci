@@ -91,7 +91,7 @@ def geo(request):
 		groups =  api.get_venues(geolat = lat, geolong = lon, l = 50)['groups']
 	
 	
-		resp = '<html><body>'
+		
 		venues = []
 		if len(groups)> 0:
 			for venue in groups[0]['venues']:
@@ -129,7 +129,11 @@ def geo(request):
 				else:
 					logging.debug('venue already existing')
 				venues.append(place)
-			
+			pass#for
+		pass#if
+	
+	except:
+		pass
 	places = find_near(lat, lon, 0.30)
 	c = RequestContext(request, {'venues': places})
 	t = loader.get_template('geo.html')
