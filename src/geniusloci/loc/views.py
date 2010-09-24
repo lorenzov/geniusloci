@@ -88,6 +88,7 @@ def locate(request):
 	lat = 0
 	lon = 0
 	try:
+		b = g.geocode_first(query)
 		b = g.geocode(query)
 		lat = b[1][0]
 		lon = b[1][1]
