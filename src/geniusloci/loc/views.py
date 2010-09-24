@@ -91,8 +91,8 @@ def locate(request):
 		b = g.geocode(query)
 		lat = b[1][0]
 		lon = b[1][1]
-	except:
-		return HttpResponse('error ' + query)
+	except Exception, ex:
+		return HttpResponse('error ' + query + ' '+ ex.message)
 		
 	return HttpResponseRedirect('/mobile/geo/?lat=' + str(lat) + '&lon=' + str(lon))
 
