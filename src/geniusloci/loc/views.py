@@ -171,13 +171,20 @@ def services_like(request, id):
 	
 	
 def mobile_place(request, slug, id):
+	lat = ''
+	lon = ''
+	try:
+		lat = request.GET[lat]
+		lon = request.GET[lon]
+	except:
+		pass
 	place = None
 	try:
 		place = Place.objects.get(pk = id)
 	except:
 		return HttpResponseServerError(id)
 	likes = Like.objects.filter(place__exact = place)
-	c = RequestContext(request, {'place': place, 'likes': likes})
+	c = RequestContext(request, {'place': place, 'likes': likes, 'lat': lat, 'lon': lon})
 	t = loader.get_template('mobile_place.html')
 	return HttpResponse(t.render(c))	
 	
