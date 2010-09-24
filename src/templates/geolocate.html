@@ -1,26 +1,25 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
-<script>
-   if (document.cookie.indexOf("iphone_redirect=false") == -1){
-		navigator.geolocation.getCurrentPosition(success, fail);
-			// success callback, gets passed position object
-			
-	}
-	
 
-function success(position) // 'position' can be named anything
-{
-	window.location ='/mobile/geo/?lat=' + position.coords.latitude + '&lon=' + position.coords.longitude; 
-	
-}
-
-function fail(){
-	document.write('fail');
-}
-</script>
 </head>
 <body>
+	<script>
+
+			navigator.geolocation.getCurrentPosition(success, fail);
+
+
+
+	function success(position) // 'position' can be named anything
+	{
+		window.location ='/mobile/geo/?lat=' + position.coords.latitude + '&lon=' + position.coords.longitude; 
+
+	}
+
+	function fail(){
+		document.write('fail');
+	}
+	</script>
 	Waiting for your position...
 </body>
 </html>
