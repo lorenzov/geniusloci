@@ -86,47 +86,49 @@ def geo(request):
 	lat = request.GET.get('lat')
 	lon = request.GET.get('lon')
 	api = foursquare.Api()
+	
+	try:
 	groups =  api.get_venues(geolat = lat, geolong = lon, l = 50)['groups']
 	
 	
-	resp = '<html><body>'
-	venues = []
-	if len(groups)> 0:
-		for venue in groups[0]['venues']:
+		resp = '<html><body>'
+		venues = []
+		if len(groups)> 0:
+			for venue in groups[0]['venues']:
 			
-			name = venue['name']
-			distance = venue['distance']
-			address = venue['address']
-			city = venue['city']
-			category = None
-			try:
-				category = venue['primarycategory']
-				category = category['fullpathname']
-			except:
-				pass
-			f_id = venue['id']
-			geolat = venue['geolat']
-			geolong = venue['geolong']
-			myvenue = {}
-			
-			place, created = Place.objects.get_or_create(foursquare_id__exact = f_id)
-			if created == True:
-				place.city = city.lower()
-				place.name = name
-				place.address = address
-				place.foursquare_id = f_id
-				if category == 'None':
-					category = ''
-				place.foursquare_category = category
-				place.geolat = Decimal(str(geolat))
-				place.geolong = Decimal(str(geolong))
+				name = venue['name']
+				distance = venue['distance']
+				address = venue['address']
+				city = venue['city']
+				category = None
 				try:
-					place.save()
+					category = venue['primarycategory']
+					category = category['fullpathname']
 				except:
-					logging.debug('error saving venue from 4sq')	
-			else:
-				logging.debug('venue already existing')
-			venues.append(place)
+					pass
+				f_id = venue['id']
+				geolat = venue['geolat']
+				geolong = venue['geolong']
+				myvenue = {}
+			
+				place, created = Place.objects.get_or_create(foursquare_id__exact = f_id)
+				if created == True:
+					place.city = city.lower()
+					place.name = name
+					place.address = address
+					place.foursquare_id = f_id
+					if category == 'None':
+						category = ''
+					place.foursquare_category = category
+					place.geolat = Decimal(str(geolat))
+					place.geolong = Decimal(str(geolong))
+					try:
+						place.save()
+					except:
+						logging.debug('error saving venue from 4sq')	
+				else:
+					logging.debug('venue already existing')
+				venues.append(place)
 			
 		places = find_near(lat, lon, 0.30)
 		c = RequestContext(request, {'venues': places})
