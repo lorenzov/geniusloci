@@ -193,8 +193,8 @@ def find_near(mylat, mylong, distance, distance_orig = 0):
 	lon2 = mylong + distance/math.fabs(math.cos(math.radians(mylat))*69)
 
 
-	lat1=mylat - (distance/69)
-	lat2 = mylat+(dist/69)
+	lat1= mylat - (distance/69)
+	lat2 = mylat+(distance/69)
 	
 	places = Place.objects.filter(geolong__gte = lon1, geolong__lte = lon2, geolat__gte = lat1, geolat__lte = lat2)
 	if places.count > 0:
