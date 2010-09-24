@@ -92,7 +92,6 @@ def geo(request):
 	resp = '<html><body>'
 	venues = []
 	if len(groups)> 0:
-		logging.debug('no.of venues returned from 4sq '  + str(len(groups[0]['venues']))
 		for venue in groups[0]['venues']:
 			
 			name = venue['name']
