@@ -197,7 +197,7 @@ def find_near(mylat, mylong, distance, distance_orig = 0):
 	lat1= mylat - (distance/69)
 	lat2 = mylat+(distance/69)
 	
-	places = Place.objects.filter(geolong__lte = str(lon1), geolong__gte = str(lon2), geolat__gte = str(lat1), geolat__lte = str(lat2))
+	places = Place.objects.filter(geolong__gte = str(lon1), geolong__lte = str(lon2), geolat__gte = str(lat1), geolat__lte = str(lat2))
 	logging.debug(connection.queries[len(connection.queries) - 1])
 	if places.count() > 0:
 		return places
