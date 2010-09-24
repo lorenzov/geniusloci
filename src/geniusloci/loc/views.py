@@ -81,7 +81,19 @@ def index(request):
 	return HttpResponse(t.render(c))
 	return HttpResponse('d')#render_to_response('index.html', template_context, context_instance = RequestContext(request))
 
-
+def locate(request):
+	query = request.GET['l']
+	g = geopy.geocoders.Google()
+	lat = 0
+	lon = 0
+	try:
+		b = g.geocode(l)
+		lat = b[1][0]
+		lon = b[1][1]
+	except:
+		return HttpResponse('error')
+		
+	return HttpResponseRedirect('/mobile/geo/?lat=' + str(lat) + '&lon=' + str(lon))
 
 def search(request):
 	query = request.GET['s']

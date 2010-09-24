@@ -21,6 +21,7 @@ urlpatterns = patterns('',
 	
 	(r'^p/(?P<slug>).*/(?P<id>\d+)/$', 'geniusloci.loc.views.place'),
 	(r'^search/$', 'geniusloci.loc.views.search'),
+	(r'^locate/$', 'geniusloci.loc.views.locate'),
 	(r'^services/like/(?P<id>\d+)/$', 'geniusloci.loc.views.services_like'),
 	(r'^geolocate/$',  direct_to_template, {'template': 'geolocate.html'}),
 	(r'^near_me/$', 'geniusloci.loc.views.near_me'),
