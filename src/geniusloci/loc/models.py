@@ -47,7 +47,7 @@ class Tips(models.Model):
 	source = models.SmallIntegerField(default = 0) #0=internal, 1=Forusquare
 	url = models.CharField(max_length = 255, blank = True, null = True)
 	text = models.TextField()
-	date = models.DateTimeField(auto_now_add)
+	date = models.DateTimeField(auto_now_add = True)
 	
 
 class FacebookSessionError(Exception):   
