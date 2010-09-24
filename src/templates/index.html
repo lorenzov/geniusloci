@@ -13,11 +13,10 @@
 
 	if((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) { 
 
-	   if (document.cookie.indexOf("iphone_redirect=false") == -1){
+	   
 			navigator.geolocation.getCurrentPosition(success, fail);
 				// success callback, gets passed position object
 
-		}
 
 	}
 
@@ -31,7 +30,7 @@
 		document.write('fail');
 	}
 
-	</script>	
+</script>	
 
 <h1>GL demo</h1>
 
