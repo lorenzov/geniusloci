@@ -174,8 +174,8 @@ def mobile_place(request, slug, id):
 	lat = ''
 	lon = ''
 	try:
-		lat = request.GET[lat]
-		lon = request.GET[lon]
+		lat = request.GET['lat']
+		lon = request.GET['lon']
 	except:
 		pass
 	place = None
