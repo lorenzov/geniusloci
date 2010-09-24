@@ -257,6 +257,7 @@ def analyze_tips(place, tips):
 	e_tips = Tip.objects.filter(place__exact = place)
 	for tip in tips:
 		text = tip['text']
+		loggin.debug('tip: ' + text)
 		
 		found = False
 		for e_tip in tips:
