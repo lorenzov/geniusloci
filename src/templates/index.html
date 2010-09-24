@@ -5,33 +5,33 @@
 
 
 
-<script>
 
-
-if((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) { 
-
-   if (document.cookie.indexOf("iphone_redirect=false") == -1){
-		navigator.geolocation.getCurrentPosition(success, fail);
-			// success callback, gets passed position object
-			
-	}
-	
-}
-
-function success(position) // 'position' can be named anything
-{
-	window.location ='mobile/geo/?lat=' + position.coords.latitude + '&lon=' + position.coords.longitude; 
-	
-}
-
-function fail(){
-	document.write('fail');
-}
-
-</script>
 </head>
 <body>
-	
+	<script>
+
+
+	if((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) { 
+
+	   if (document.cookie.indexOf("iphone_redirect=false") == -1){
+			navigator.geolocation.getCurrentPosition(success, fail);
+				// success callback, gets passed position object
+
+		}
+
+	}
+
+	function success(position) // 'position' can be named anything
+	{
+		window.location ='mobile/geo/?lat=' + position.coords.latitude + '&lon=' + position.coords.longitude; 
+
+	}
+
+	function fail(){
+		document.write('fail');
+	}
+
+	</script>	
 
 <h1>GL demo</h1>
 
