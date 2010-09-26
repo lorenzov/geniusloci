@@ -189,7 +189,7 @@ def place(request, slug, id):
 
 def services_tip(request, id):
 	place = Place.objects.get(pk = id)
-	if not 't' in request.GET || not request.user.is_authenticated():
+	if not 't' in request.GET or not request.user.is_authenticated():
 		return HttpResponseRedirect("/p/" + str(place.slug()) + "/" + str(place.id) + "/")
 	t = request.GET['t']
 	tip = Tip(place = place)
