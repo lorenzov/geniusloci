@@ -190,6 +190,7 @@ def place(request, slug, id):
 
 def logout_view(request):
 	logout(request)
+	return HttpResponseRedirect('/')
 
 def services_tip(request, id):
 	place = Place.objects.get(pk = id)
