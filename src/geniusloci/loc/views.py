@@ -76,7 +76,7 @@ def login(request):
 
 def index(request):
 	
-	places = Place.objects.all().order_by('-id')[:10]
+	places = Place.objects.filter(foursquare_category__isnull = False).order_by('-id')[:10]
 	c = RequestContext(request, {'places': places})
 	t = loader.get_template('index.html')
 	return HttpResponse(t.render(c))
