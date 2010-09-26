@@ -3,7 +3,7 @@ import time
 import random
 
 c = Client()
-lat = 45.4530
+lat = 45.4450
 lon = 9.152
 
 
