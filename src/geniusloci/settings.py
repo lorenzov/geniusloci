@@ -115,3 +115,5 @@ logging.basicConfig(
     filename = '/tmp/geniusloci.log',
     filemode = 'w'
 )
+
+PREPEND_WWW = True
