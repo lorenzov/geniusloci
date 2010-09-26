@@ -15,8 +15,8 @@
 
 <div class="toolbar">
     <h1 id="pageTitle">{{place.name}}</h1>
-    <a "button leftButton"   href="/mobile/geo/?lat={{lat}}&lon={{lon}}" target="_self">Back</a>
-    <a class="button" href="#searchForm">I Like this place</a>
+    <a class="button leftButton"   href="/mobile/geo/?lat={{lat}}&lon={{lon}}" target="_self">Back</a>
+    
 </div>
 
 
@@ -27,6 +27,14 @@
 <b>{{place.city}}</b> {{place.address}}<br/>{{place.foursquare_category}}<br/>
 <a href="http://maps.google.com/?daddr={{place.geolat}},{{place.geolong}}&saddr={{lat}},{{lon}}" target="_self">Directions from here</a>
 </h2>
+
+
+{% if user.is_authenticated %}
+<img src='https://graph.facebook.com/{{user.username}}/picture' class=" fb_profile_pic_rendered FB_ElementReady"/>&nbsp; welcome back, {{user.first_name}}!
+{%else%}
+<a href="https://graph.facebook.com/oauth/authorize?client_id=129708490411788&redirect_uri=http://www.euproweb.eu/login/&scope=publish_stream,email&display=touch">
+  <img src="http://developers.facebook.com/images/devsite/login-button.png" border="0"/>
+</a>{%endif%}
 
 </div>
 
