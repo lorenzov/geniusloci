@@ -41,7 +41,7 @@ class Like(models.Model):
 class UserProfile(models.Model):
 	user = models.ForeignKey(User, unique = True, db_index = True)
 
-class Tips(models.Model):
+class Tip(models.Model):
 	place = models.ForeignKey(Place, db_index = True)
 	user = models.ForeignKey(User, null = True, blank = True, db_index = True)
 	source = models.SmallIntegerField(default = 0) #0=internal, 1=Forusquare

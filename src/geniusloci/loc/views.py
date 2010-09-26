@@ -187,6 +187,19 @@ def place(request, slug, id):
 	return HttpResponse(t.render(c))	
 		
 
+def services_tip(request, id):
+	place = Place.objects.get(pk = id)
+	if not 't' in request.GET || not request.user.is_authenticated():
+		return HttpResponseRedirect("/p/" + str(place.slug()) + "/" + str(place.id) + "/")
+	t = request.GET['t']
+	tip = Tip(place = place)
+	tip.user = request.user
+	tip.source = 0
+	tip.text = t
+	tip.save()
+	HttpResponseRedirect("/p/" + str(place.slug()) + "/" + str(place.id) + "/")
+
+
 def services_like(request, id):
 	place = Place.objects.get(pk = id)
 	if request.user.is_authenticated():
