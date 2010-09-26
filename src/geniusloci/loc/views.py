@@ -197,7 +197,7 @@ def services_tip(request, id):
 	tip.source = 0
 	tip.text = t
 	tip.save()
-	return HttpResponseRedirect("/p/" + str(place.slug()) + "/" + str(place.id) + "/")
+	return HttpResponseRedirect("/mobile/p/" + str(place.slug()) + "/" + str(place.id) + "/")
 
 
 def services_like(request, id):
