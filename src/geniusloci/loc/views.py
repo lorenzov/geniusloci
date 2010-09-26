@@ -1,5 +1,5 @@
 # Create your views here.
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden, HttpResponseServerError, HttpResponsePermanentRedirect
 from django.shortcuts import render_to_response
 from django.template import Context, loader, RequestContext
@@ -186,6 +186,10 @@ def place(request, slug, id):
 	t = loader.get_template('place.html')
 	return HttpResponse(t.render(c))	
 		
+
+
+def logout_view(request):
+	logout(request)
 
 def services_tip(request, id):
 	place = Place.objects.get(pk = id)
