@@ -33,8 +33,10 @@
 {% if user.is_authenticated %}
 <img src='https://graph.facebook.com/{{user.username}}/picture' class=" fb_profile_pic_rendered FB_ElementReady"/>&nbsp; welcome back, {{user.first_name}}!
 <br/>
+<a href="/services/mobile/like/{{place.if}}/" class="button" target="_self">I like this place!</a>
+<br/>
 Enter your tip about this place:<br/>
-<form action="/services/tip/{{place.id}}/">
+<form action="/services/mobile/tip/{{place.id}}/">
 	<textarea columns="10" rows="5" name="t"></textarea><br/>
 	<input type="submit" value="Save"/>
 {%else%}

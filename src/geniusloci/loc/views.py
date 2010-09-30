@@ -186,6 +186,7 @@ def place(request, slug, id):
 		return HttpResponseServerError(id)
 		
 	likes = Like.objects.filter(place__exact = place)
+	tips = Tip.objects.filter(place__exact = place)
 	c = RequestContext(request, {'place': place, 'likes': likes, })
 	t = loader.get_template('place.html')
 	return HttpResponse(t.render(c))	
@@ -196,7 +197,7 @@ def logout_view(request):
 	logout(request)
 	return HttpResponseRedirect('/')
 
-def services_tip(request, id):
+def services_mobile_tip(request, id):
 	place = Place.objects.get(pk = id)
 	if not 't' in request.GET or not request.user.is_authenticated():
 		return HttpResponseRedirect("/p/" + str(place.slug()) + "/" + str(place.id) + "/")
@@ -220,6 +221,18 @@ def services_like(request, id):
 		pass
 	return HttpResponseRedirect("/p/" + str(place.slug()) + "/" + str(place.id) + "/")
 	
+
+def services__mobile_like(request, id):
+	place = Place.objects.get(pk = id)
+	if request.user.is_authenticated():
+	 	count = Like.objects.filter(place__id__exact = id, user__exact = request.user).count()
+		if count == 0:
+			like = Like(place = place)
+			like.user = request.user
+			like.save()
+		pass
+	return HttpResponseRedirect("/mobile/p/" + str(place.slug()) + "/" + str(place.id) + "/")
+
 	
 	
 def mobile_place(request, slug, id):
@@ -236,7 +249,8 @@ def mobile_place(request, slug, id):
 	except:
 		return HttpResponseServerError(id)
 	likes = Like.objects.filter(place__exact = place)
-	c = RequestContext(request, {'place': place, 'likes': likes, 'lat': lat, 'lon': lon})
+	tips = Tip.objects.filter(place__exact = place)
+	c = RequestContext(request, {'place': place, 'likes': likes, 'tips': tips 'lat': lat, 'lon': lon})
 	t = loader.get_template('mobile_place.html')
 	return HttpResponse(t.render(c))	
 	
