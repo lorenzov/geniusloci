@@ -13,8 +13,8 @@
 
 	if((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i)) || (navigator.userAgent.match(/Android/i)))  { 
 
-	   
-			navigator.geolocation.getCurrentPosition(success, fail);
+	   window.location ='/geolocate/?'; 
+			//navigator.geolocation.getCurrentPosition(success, fail);
 				// success callback, gets passed position object
 
 

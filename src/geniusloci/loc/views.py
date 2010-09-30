@@ -108,8 +108,12 @@ def search(request):
 		
 	
 def geo(request):
+	lat = 0
+	lon = 0
 	lat = request.GET.get('lat')
 	lon = request.GET.get('lon')
+	if lat == None or len(lat) == 0:
+		return HttpResponseRedirect('/geolocate/?')
 	api = foursquare.Api()
 	
 	try:
