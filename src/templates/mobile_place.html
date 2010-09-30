@@ -29,6 +29,11 @@
 <a href="http://maps.google.com/?daddr={{place.geolat}},{{place.geolong}}&saddr={{lat}},{{lon}}" target="_self">Directions from here</a>
 </h2>
 
+{%ifnotequal tipscount 0%}
+{{tipscount}} people like this place!
+
+{%endif%}
+
 
 {% if user.is_authenticated %}
 <img src='https://graph.facebook.com/{{user.username}}/picture' class=" fb_profile_pic_rendered FB_ElementReady"/>&nbsp; welcome back, {{user.first_name}}!
