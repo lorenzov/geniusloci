@@ -29,13 +29,22 @@
 <a href="http://maps.google.com/?daddr={{place.geolat}},{{place.geolong}}&saddr={{lat}},{{lon}}" target="_self">Directions from here</a>
 </h2>
 
-{%ifnotequal tipscount 0%}
-{{tipscount}} people like this place!<br/>
+{%ifnotequal likecount 0%}
+{{likecount}} people like this place!<br/>
 
 {%endifnotequal%}
 
 
 <br/>
+
+{%ifnotequal tipscount 0%}
+{%for tip in tips%}
+{{tip.text}}<br/>
+<small><i>{{tip.date|timesince}}</i></small><br/>
+
+{%endofr%}
+
+{%endifnotequal%}
 
 
 {% if user.is_authenticated %}
