@@ -222,7 +222,7 @@ def services_like(request, id):
 	return HttpResponseRedirect("/p/" + str(place.slug()) + "/" + str(place.id) + "/")
 	
 
-def services__mobile_like(request, id):
+def services_mobile_like(request, id):
 	place = Place.objects.get(pk = id)
 	if request.user.is_authenticated():
 	 	count = Like.objects.filter(place__id__exact = id, user__exact = request.user).count()
