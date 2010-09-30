@@ -16,7 +16,7 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     # (r'^admin/', include(admin.site.urls)),
 	
-	url(r'^$', 'geniusloci.loc.views.index'),
+	(r'^$', 'geniusloci.loc.views.index'),
 	
 	(r'^logout/$', 'geniusloci.loc.views.logout_view'),
 	(r'^p/(?P<slug>).*/(?P<id>\d+)/$', 'geniusloci.loc.views.place'),
