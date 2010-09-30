@@ -250,9 +250,9 @@ def mobile_place(request, slug, id):
 		return HttpResponseServerError(id)
 	likes = Like.objects.filter(place__exact = place)
 	tips = Tip.objects.filter(place__exact = place)
-	tipscount = tips.count()
+	likecount = tips.count()
 	tips = tips[:3]
-	c = RequestContext(request, {'place': place, 'likes': likes, 'tips': tips, 'tipscount': tipscount,  'lat': lat, 'lon': lon})
+	c = RequestContext(request, {'place': place, 'likes': likes, 'tips': tips, 'likecount': likecount,  'lat': lat, 'lon': lon})
 	t = loader.get_template('mobile_place.html')
 	return HttpResponse(t.render(c))	
 	
