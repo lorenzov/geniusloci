@@ -47,9 +47,10 @@
 	
 	<br/>
 	
+	Recent reviews by our users:<br/>
 	{%for tip in tips%}
-	<em>{{tip.text}}</em><small>{{tip.date|timesince}}</small><br/>
-	{%endfor%}
+	<img src='https://graph.facebook.com/{{tip.user.username}}/picture' class=" fb_profile_pic_rendered FB_ElementReady"/><em>{{tip.text}}</em>&nbsp;<small>{{tip.date|timesince}}</small><br/>
+	{%endfor%}<br/>
 	<a href="https://graph.facebook.com/oauth/authorize?client_id=129708490411788&redirect_uri=http://www.euproweb.eu/login/?backTo=/p/{{place.slug}}/{{place.id}}/&scope=publish_stream,email&display=popup">
 	  <img src="http://developers.facebook.com/images/devsite/login-button.png" border="0"/>
 	<br/>
