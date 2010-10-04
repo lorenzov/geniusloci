@@ -68,7 +68,7 @@
 	
 	<div id="div_photo_ex"
 	  style="float: right; margin: 10px 15px">
-	  
+	  <small>Photos thanks to <a href="http://panoramio.com">panoramio</a></small>
 	</div>
 	<script type="text/javascript" src="http://www.panoramio.com/wapi/wapi.js?v=1&amp;hl=fr"></script>
 	<script type="text/javascript">
@@ -76,7 +76,7 @@
 	    'div_photo_ex', {'sw': {'lat': {{place.geolat}} - 0.003, 'lng': {{place.geolong}} - 0.003}, 'ne': {'lat': {{place.geolat}} + 0.003, 'lng': {{place.geolong}} + 0.003}}, {'width': 350, 'height': 200});
 	  photo_ex_widget.setPosition(0);
 	</script>
-	<small>Photos thanks to <a href="http://panoramio.com">panoramio</a></small>
+	
 	<script> 
 
 	function InitConnected(){
