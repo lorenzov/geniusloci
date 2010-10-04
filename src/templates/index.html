@@ -58,6 +58,16 @@ Last tips:<br/>
 <b><a href="/p/{{tip.place.slug}}/{{tip.place.id}}/">{{tip.place.name}}</a></b> - <em>{{tip.text}}</em><br/>
 {%endfor%}
 
+
+Last activities by our users:<br/>
+{%for like in likes%}
+
+<b><a href="/p/{{like.place.slug}}/{{like.place.id}}/">{{like.place.name}}</a></b> - <img src="https://graph.facebook.com/{{like.user.username}}/picture"><br/>
+{%endfor%}
+
+
+
+
 {% if user.is_authenticated %}
 <img src='https://graph.facebook.com/{{user.username}}/picture' class=" fb_profile_pic_rendered FB_ElementReady"/>&nbsp; welcome back, {{user.first_name}}!
 {%else%}
