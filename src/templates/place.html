@@ -46,6 +46,10 @@
 	<h3>{{place.foursquare_category}}</h3>
 	
 	<br/>
+	
+	{%for tip in tips%}
+	<em>{{tip.text}}</em><small>{{tip.date|timesince}}</small><br/>
+	{%endfor%}
 	<a href="https://graph.facebook.com/oauth/authorize?client_id=129708490411788&redirect_uri=http://www.euproweb.eu/login/?backTo=/p/{{place.slug}}/{{place.id}}/&scope=publish_stream,email&display=popup">
 	  <img src="http://developers.facebook.com/images/devsite/login-button.png" border="0"/>
 	<br/>
@@ -74,7 +78,7 @@
 	<script type="text/javascript">
 	  var photo_ex_widget = new panoramio.PhotoWidget(
 	    'div_photo_ex', {'sw': {'lat': {{place.geolat|add:"-0.003"}} , 'lng': {{place.geolong|add:"-0.003"}} }, 'ne': {'lat': {{place.geolat|add:"0.003"}} , 'lng': {{place.geolong|add:"0.003"}} }}, {'width': 350, 'height': 200});
-	  photo_ex_widget.setPosition(0);
+	  //photo_ex_widget.setPosition(0);
 	</script>
 	
 	<script> 

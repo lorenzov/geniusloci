@@ -189,7 +189,7 @@ def place(request, slug, id):
 		
 	likes = Like.objects.filter(place__exact = place)
 	tips = Tip.objects.filter(place__exact = place)
-	c = RequestContext(request, {'place': place, 'likes': likes, })
+	c = RequestContext(request, {'place': place, 'likes': likes,'tips': tips })
 	t = loader.get_template('place.html')
 	return HttpResponse(t.render(c))	
 		
