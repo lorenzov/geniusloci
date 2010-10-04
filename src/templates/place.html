@@ -73,7 +73,7 @@
 	<script type="text/javascript" src="http://www.panoramio.com/wapi/wapi.js?v=1&amp;hl=fr"></script>
 	<script type="text/javascript">
 	  var photo_ex_widget = new panoramio.PhotoWidget(
-	    'div_photo_ex', {'sw': {'lat': {{place.geolat}} - 0.003, 'lng': {{place.geolong}} - 0.003}, 'ne': {'lat': {{place.geolat}} + 0.003, 'lng': {{place.geolong}} + 0.003}}, {'width': 350, 'height': 200});
+	    'div_photo_ex', {'sw': {'lat': {{place.geolat|add:"-0.003"}} , 'lng': {{place.geolong|add:"-0.003"}} }, 'ne': {'lat': {{place.geolat|add:"0.003"}} , 'lng': {{place.geolong|add:"0.003"}} }}, {'width': 350, 'height': 200});
 	  photo_ex_widget.setPosition(0);
 	</script>
 	
