@@ -271,7 +271,7 @@ def mobile_map(request, id):
 	
 	
 #500m = 0.33 miles ca
-def find_near(mylat, mylong, distance, distance_orig = 0, null_foursquare_categ = False):
+def find_near(mylat, mylong, distance, distance_orig = 0, null_foursquare_categ = False, mult_limit = 20):
 	mylong = float(mylong)
 	mylat = float(mylat)
 	lon1 = mylong - distance/math.fabs(math.cos(math.radians(mylat))*69)
@@ -288,7 +288,7 @@ def find_near(mylat, mylong, distance, distance_orig = 0, null_foursquare_categ 
 		return places
 	if distance_orig == 0:
 		distance_orig = distance
-	elif distance > distance_orig * 20: #five times the original distance
+	elif distance > distance_orig * mult_limit: #mult_limit times the original distance
 		return []
 	logging.debug('new find near query ' + str(distance))
 	return find_near(mylat, mylong, distance * 2, distance_orig)
