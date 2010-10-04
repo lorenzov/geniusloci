@@ -75,9 +75,11 @@ def login(request):
 
 
 def index(request):
+	tips = Tip.objects.all().order_by('-date')[10]
+	likes = Like.objects.all().order_by('-date')[10]	
 	
 	places = Place.objects.filter(foursquare_category__isnull = False).order_by('-id')[:10]
-	c = RequestContext(request, {'places': places})
+	c = RequestContext(request, {'places': places, 'tips': tips, 'likes': likes})
 	t = loader.get_template('index.html')
 	return HttpResponse(t.render(c))
 	return HttpResponse('d')#render_to_response('index.html', template_context, context_instance = RequestContext(request))
