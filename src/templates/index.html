@@ -55,7 +55,7 @@
 Last tips:<br/>
 {%for tip in tips%}
 
-<b><a href="/p/{{place.slug}}/{{place.id}}/">{{tip.place.name}}</a></b> - <em>{{tip.text}}</em><br/>
+<b><a href="/p/{{tip.place.slug}}/{{tip.place.id}}/">{{tip.place.name}}</a></b> - <em>{{tip.text}}</em><br/>
 {%endfor%}
 
 {% if user.is_authenticated %}
