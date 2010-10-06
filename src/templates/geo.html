@@ -23,6 +23,14 @@
     {%endfor%}
 
 </ul>
+
+<div id="searchform" class="panel">
+	Search for a place around you:
+	<form>
+		<input type="hidden" name="lat" value="{{lat}}"/><input type="hidden" name="long" value="{{lon}}">
+		<input type="text" name="s" length="10"/>&nbsp;<input type="button" value="search" class="button">
+	</form>
+</div>
 </body>
 </html>
 

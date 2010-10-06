@@ -171,6 +171,9 @@ def geo(request):
 	except:
 		pass
 	places = find_near(lat, lon, 0.30)
+	if 's' in request.GET:
+		#filtering search by name
+		places = filter_places_by_name(places, request.GET['s'])
 	c = RequestContext(request, {'venues': places, 'lat': lat, 'lon': lon})
 	t = loader.get_template('geo.html')
 	return HttpResponse(t.render(c))
@@ -294,6 +297,8 @@ def find_near(mylat, mylong, distance, distance_orig = 0, null_foursquare_categ 
 	logging.debug('new find near query ' + str(distance))
 	return find_near(mylat, mylong, distance * 2, distance_orig)
 
+def filter_places_by_name(places, name):
+	return places.filter(name__icontains = name)
 
 def analyze_tips(place, tips):
 	e_tips = Tip.objects.filter(place__exact = place)
