@@ -173,7 +173,7 @@ def geo(request):
 	places = find_near(lat, lon, 0.30)
 	if 's' in request.GET:
 		#filtering search by name
-		places = filter_places_by_name(places, request.POST['s'])
+		places = filter_places_by_name(places, request.GET['s'])
 	c = RequestContext(request, {'venues': places, 'lat': lat, 'lon': lon})
 	t = loader.get_template('geo.html')
 	return HttpResponse(t.render(c))
