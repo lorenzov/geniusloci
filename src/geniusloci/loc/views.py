@@ -292,7 +292,7 @@ def find_near(mylat, mylong, distance, distance_orig = 0, null_foursquare_categ 
 	
 	places = Place.objects.filter(geolong__gte = str(lon1), geolong__lte = str(lon2), geolat__gte = str(lat1), geolat__lte = str(lat2), foursquare_category__isnull = False)
 
-	if places.count() > 10 and mult_limit = 20:
+	if places.count() > 10 and mult_limit == 20:
 		return places
 	if distance_orig == 0:
 		distance_orig = distance
