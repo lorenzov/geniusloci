@@ -33,6 +33,9 @@
 {{likecount}} people like this place!<br/>
 
 {%endifnotequal%}
+{%for like in likes%}
+<img src='https://graph.facebook.com/{{like.user.username}}/picture' class=" fb_profile_pic_rendered FB_ElementReady" width="35"/> &nbsp;
+{%endfor%}
 
 
 <br/>

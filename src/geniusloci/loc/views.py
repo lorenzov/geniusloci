@@ -253,6 +253,7 @@ def mobile_place(request, slug, id):
 	likes = Like.objects.filter(place__exact = place)
 	tips = Tip.objects.filter(place__exact = place)
 	likecount = likes.count()
+	likes = likes.order_by('-date')[:5]
 	tipscount = tips.count()
 	tips = tips[:3]
 	c = RequestContext(request, {'place': place, 'likes': likes, 'tips': tips, 'likecount': likecount, 'tipscount': tipscount,   'lat': lat, 'lon': lon})
