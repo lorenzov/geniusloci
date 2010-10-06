@@ -171,7 +171,7 @@ def geo(request):
 	except:
 		pass
 	places = find_near(lat, lon, 0.30)
-	if 's' in request.POST:
+	if 's' in request.GET:
 		#filtering search by name
 		places = filter_places_by_name(places, request.POST['s'])
 	c = RequestContext(request, {'venues': places, 'lat': lat, 'lon': lon})
