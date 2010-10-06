@@ -51,8 +51,9 @@
 	{%for tip in tips%}
 	<img src='https://graph.facebook.com/{{tip.user.username}}/picture' class=" fb_profile_pic_rendered FB_ElementReady"/><em>{{tip.text}}</em>&nbsp;<small>{{tip.date|timesince}}</small><br/>
 	{%endfor%}<br/>
+	{% if user.is_authenticated %}
 	<a href="https://graph.facebook.com/oauth/authorize?client_id=129708490411788&redirect_uri=http://www.euproweb.eu/login/?backTo=/p/{{place.slug}}/{{place.id}}/&scope=publish_stream,email&display=popup">
-	  <img src="http://developers.facebook.com/images/devsite/login-button.png" border="0"/>
+	  <img src="http://developers.facebook.com/images/devsite/login-button.png" border="0"/></a>{%endif%}
 	<br/>
 	<h4><a href="/"><em>Go back</em></a><br/>
 		
