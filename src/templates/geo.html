@@ -25,15 +25,15 @@
 </ul>
 
 
-<form id="searchForm" class="dialog" >
+<form id="searchForm" class="dialog" method="get">
     <fieldset>
         <h1>Search for a place</h1>
         <a class="button leftButton" type="cancel">Cancel</a>
         <a class="button blueButton" type="submit">Search</a>
-        <input type="hidden" name="lat" value="{{lat}}"/><input type="hidden" name="long" value="{{lon}}">
+        
         <label>Name:</label>
         <input id="s" type="text" name="s"/>
-        
+        <input type="hidden" name="lat" value="{{lat}}"/><input type="hidden" name="long" value="{{lon}}"/>
     </fieldset>
 
 </form>
