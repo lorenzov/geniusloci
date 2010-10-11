@@ -12,6 +12,7 @@ geopy/util.py
 geopy.egg-info/PKG-INFO
 geopy.egg-info/SOURCES.txt
 geopy.egg-info/dependency_links.txt
+geopy.egg-info/requires.txt
 geopy.egg-info/top_level.txt
 geopy/geocoders/__init__.py
 geopy/geocoders/base.py
