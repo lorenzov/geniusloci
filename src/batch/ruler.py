@@ -8,10 +8,10 @@ from geniusloci.loc.models import *
 def rule_category():
 	places = Place.objects.all()
 	for place in places:
-		if len(place.foursquare_category) == 0:
-			continue
+		
 		
 		cat = place.foursquare_category
+		print cat
 		if cat.find('Arts & Entertainment:') == 0:
 			place.category = 1 #visit
 		if cat.find('Food:') == 0:
