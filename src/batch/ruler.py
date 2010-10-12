@@ -32,4 +32,4 @@ def rule_category():
 			place.category = 4 #have fun
 		
 if __name__ == '__main__':
-	rule_category
+	rule_category()
