@@ -11,6 +11,8 @@ def rule_category():
 		
 		
 		cat = place.foursquare_category
+		if cat is None:
+			continue
 		print cat
 		if cat.find('Arts & Entertainment:') == 0:
 			place.category = 1 #visit
