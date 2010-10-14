@@ -13,7 +13,7 @@
   function initializeMap(lat, longt) {
     var latlng = new google.maps.LatLng(lat, longt);
     var myOptions = {
-      zoom: 8,
+      zoom: 4,
       center: latlng,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
@@ -21,7 +21,7 @@
         myOptions);
 
 	var marker = new google.maps.Marker({
-		        position: myLatlng, 
+		        position: latlng, 
 		        map: map,
 		        title:"You are here!"
 	});
