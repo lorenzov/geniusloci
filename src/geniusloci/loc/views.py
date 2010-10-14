@@ -184,6 +184,11 @@ def geo(request):
 			
 			
 	
+def mobile_home(request):
+	c = RequestContext(request, {})
+	t = loader.get_template('mobile_home.html')
+	return HttpResponse(t.render(c))
+	
  
 
 
