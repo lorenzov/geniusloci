@@ -37,7 +37,7 @@ var places = [
 			var pid = place[3]
 			
 			google.maps.event.addListener(marker, 'click', function(i) {
-				var url = /mobile/p/ + places[i][4] + '/' + places[i][3] + '/';
+				var url = '/mobile/p/' + places[i][4] + '/' + places[i][3] + '/';
 			    window.location = url;
 			  });
 
