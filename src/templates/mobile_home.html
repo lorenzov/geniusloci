@@ -34,7 +34,7 @@ var places = [
 		    });
 			
 			google.maps.event.addListener(marker, 'click', function(i) {
-				var url = '/mobile/p/' + {{place.slug}} + '/' + {{place.id}} + '/';
+				var url = '/mobile/p/{{place.slug}}/{{place.id}}/';
 			    window.location = url;
 			  });
 
