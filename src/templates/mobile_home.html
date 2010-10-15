@@ -26,11 +26,11 @@ var places = [
     };
     var map = new google.maps.Map(document.getElementById("map_canvas"),myOptions);
 		{%for place in places%}
-		    var myLatLng = new google.maps.LatLng({{place.getlat}}, {{place.getlong}});
+		    var myLatLng = new google.maps.LatLng({{place.geolat}}, {{place.geolong}});
 		    var marker = new google.maps.Marker({
 		        position: myLatLng,
 		        map: map,
-		        title: {{place.name}}
+		        title: '{{place.name}}'
 		    });
 			
 			google.maps.event.addListener(marker, 'click', function(i) {
