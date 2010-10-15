@@ -13,7 +13,7 @@
   
 var places = [
 {%for place in places%}
-['{{place.name}}',{{place.lat}}, {{place.long}} ],
+['{{place.name}}',{{place.geolat}}, {{place.geolong}} ],
 {%endfor%}
 ];
   function initializeMap(lat, longt) {
