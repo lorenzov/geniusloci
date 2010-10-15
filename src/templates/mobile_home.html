@@ -33,8 +33,10 @@ var places = [
 		        map: map,
 		        title: place[0]
 		    });
+			var slug = place[4];
+			var pid = place[3]
 			google.maps.event.addListener(marker, 'click', function() {
-			    window.location = '/mobile/p/'  + places[i][4] + '/' + places[i][3] + '/';
+			    window.location = '/mobile/p/'  + slug + '/' + pid+ '/';
 			  });
 
   		}
