@@ -186,7 +186,7 @@ def geo(request):
 	
 def mobile_map(request):
 	c = RequestContext(request, {})
-	t = loader.get_template('mobile_map.html')
+	t = loader.get_template('mobile_geolocate.html')
 	return HttpResponse(t.render(c))
 	
 

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<style type="text/css">
+  html { height: 100% }
+  body { height: 100%; margin: 0px; padding: 0px }
+  #map_canvas { height: 100% }
+</style>
+
+<script type="text/javascript">
+
+</script>
+
+<script>
+function geolocalize(){
+		navigator.geolocation.getCurrentPosition(success, fail);
+
+}
+
+function success(position) // 'position' can be named anything
+{
+	//initializeMap(position.coords.latitude, position.coords.longitude);
+	window.location ='/mobile/home/?lat=' + position.coords.latitude + '&lon=' + position.coords.longitude; 
+
+}
+
+function fail(){
+	document.write('fail');
+}
+</script>
+
+</head>
+<body onload="geolocalize()">
+	
+  <h1>Finding your position</h1>
+</body>
