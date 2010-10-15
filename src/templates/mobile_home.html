@@ -5,6 +5,8 @@
 
 
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<style type="text/css" media="screen">@import "/static/iui.css";</style>
+<script type="application/x-javascript" src="/static/iui.js"></script>
 <script type="text/javascript" 
 src="http://maps.google.com/maps/api/js?sensor=false&region=IT">
 </script>
@@ -63,7 +65,11 @@ function(i) {
 
 </head>
 <body onload="initializeMap()">
-	
+	<div class="toolbar">
+	         <h1 id="pageTitle"></h1>
+	        <a id="backButton" class="button" href="#"></a>
+	        <a class="button" href="#searchForm">Search</a>
+	</div>
 	<div class="panelmap" id="mapdiv">
 	<div id="map_canvas" style="width:320px;height:480px;"></div>
 	</div>
