@@ -13,14 +13,14 @@
   
 var places = [
 {%for place in places%}
-['{{place.name}}',{{place.geolat}}, {{place.geolong}} ],
+['{{place.name}}',{{place.geolat}}, {{place.geolong}}, {{place.id}}, '{{place.slug}}' ],
 {%endfor%}
 ];
   function initializeMap(lat, longt) {
 	
     var latlng = new google.maps.LatLng({{lat}}, {{lon}});
     var myOptions = {
-      zoom: 18,
+      zoom: 16,
       center: latlng,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
@@ -31,9 +31,11 @@ var places = [
 		    var marker = new google.maps.Marker({
 		        position: myLatLng,
 		        map: map,
-		        title: place[0],
-		        zIndex: place[3]
+		        title: place[0]
 		    });
+			google.maps.event.addListener(marker, 'click', function() {
+			    window.location = '/mobile/place/' + place[3] + '/' + place[4] + '/';
+			  });
 
   		}
   }
