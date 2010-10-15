@@ -35,8 +35,9 @@ var places = [
 		    });
 			var slug = place[4];
 			var pid = place[3]
+			var url = /mobile/p/ + slug + '/' + pid + '/';
 			google.maps.event.addListener(marker, 'click', function() {
-			    window.location = '/mobile/p/'  + slug + '/' + pid+ '/';
+			    window.location = url;
 			  });
 
   		}
