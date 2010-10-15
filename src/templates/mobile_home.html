@@ -25,6 +25,21 @@ var places = [
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     var map = new google.maps.Map(document.getElementById("map_canvas"),myOptions);
+
+	//current location marker
+	var image = new google.maps.MarkerImage('http://www.tourdeturtles.org/markers/placemark_circle.png',
+	      // This marker is 20 pixels wide by 32 pixels tall.
+	      new google.maps.Size(32, 32),
+	      // The origin for this image is 0,0.
+	      new google.maps.Point(0,0),
+	      // The anchor for this image is the base of the flagpole at 0,32.
+	      new google.maps.Point(0, 32));
+	var marker = new google.maps.Marker({
+		position: latlng,
+		map: map,
+		title: 'Current location',
+		icon: image
+	});
 		{%for place in places%}
 		    var myLatLng = new google.maps.LatLng({{place.geolat}}, {{place.geolong}});
 		    var marker = new google.maps.Marker({
