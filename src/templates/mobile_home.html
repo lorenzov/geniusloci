@@ -36,12 +36,14 @@ var places = [
 			var slug = place[4];
 			var pid = place[3]
 			var url = '/mobile/p/' + slug + '/' + pid + '/';
-			google.maps.event.addListener(marker, 'click', function() {
-			    window.location = url;
-			  });
+			google.maps.event.addListener(marker, 'click', go(url));
 
   		}
   }
+
+function go(url)	 {
+	    window.location = url;
+	  }
 </script>
 
 
