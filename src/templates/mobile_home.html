@@ -39,7 +39,7 @@ var places = [
 		map: map,
 		title: 'Current location',
 		icon: image,
-		zIndex = 0
+		zIndex: 0
 	});
 		{%for place in places%}
 		    var myLatLng = new google.maps.LatLng({{place.geolat}}, {{place.geolong}});
