@@ -184,12 +184,84 @@ def geo(request):
 			
 			
 	
-def mobile_home(request):
+def mobile_map(request):
 	c = RequestContext(request, {})
-	t = loader.get_template('mobile_home.html')
+	t = loader.get_template('mobile_map.html')
 	return HttpResponse(t.render(c))
 	
- 
+
+def mobile_home(request):
+	lat = 0
+	lon = 0
+	lat = request.GET.get('lat')
+	lon = request.GET.get('lon')
+	if lat == None or len(lat) == 0:
+		return HttpResponseRedirect('/geolocate/?')
+	api = foursquare.Api()
+	
+	try:
+		groups =  api.get_venues(geolat = lat, geolong = lon, l = 50)['groups']
+	
+	
+		
+		venues = []
+		if len(groups)> 0:
+			for venue in groups[0]['venues']:
+			
+				name = venue['name']
+				distance = venue['distance']
+				address = venue['address']
+				city = venue['city']
+				category = None
+				try:
+					category = venue['primarycategory']
+					category = category['fullpathname']
+				except:
+					pass
+				f_id = venue['id']
+				geolat = venue['geolat']
+				geolong = venue['geolong']
+				myvenue = {}
+			
+				place, created = Place.objects.get_or_create(foursquare_id__exact = f_id)
+				if created == True:
+					place.city = city.lower()
+					place.name = name
+					place.address = address
+					place.foursquare_id = f_id
+					if category == 'None':
+						category = ''
+					place.foursquare_category = category
+					place.geolat = Decimal(str(geolat))
+					place.geolong = Decimal(str(geolong))
+					try:
+						place.save()
+					except:
+						logging.debug('error saving venue from 4sq')	
+				else:
+					logging.debug('venue already existing')
+				try:	
+					tips = venue['tips']
+					analyze_tips(place, tips)
+				except:
+					logging.debug('can\'t find tips section')
+				venues.append(place)
+			pass#for
+		pass#if
+	
+	except:
+		pass
+		
+	places = []
+	if 's' in request.GET:
+		#filtering search by name
+		places = find_near(lat, lon, 0.30, mult_limit = 80)
+		places = filter_places_by_name(places, request.GET['s'])
+	else:
+		places = find_near(lat, lon, 0.30)
+	c = RequestContext(request, {'places': places, 'lat': lat, 'lon': lon})
+	t = loader.get_template('mobile_home.html')
+	return HttpResponse(t.render(c))	
 
 
 def place(request, slug, id):
