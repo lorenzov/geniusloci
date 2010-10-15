@@ -35,15 +35,14 @@ var places = [
 		    });
 			var slug = place[4];
 			var pid = place[3]
-			var url = '/mobile/p/' + slug + '/' + pid + '/';
-			google.maps.event.addListener(marker, 'click', goPlace(url));
+			
+			google.maps.event.addListener(marker, 'click', function(i) {
+				var url = /mobile/p/ + places[i][4] + '/' + places[i][3] + '/';
+			    window.location = url;
+			  });
 
   		}
   }
-
-function goPlace(url)	 {
-	    window.location = url;
-	  }
 </script>
 
 
