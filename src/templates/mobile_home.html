@@ -24,8 +24,7 @@ var places = [
       center: latlng,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    var map = new google.maps.Map(document.getElementById("map_canvas"),
-        myOptions);
+    var map = new google.maps.Map(document.getElementById("map_canvas"),myOptions);
 		for (var i = 0; i < places.length; i++) {
 		    var place = places[i];
 		    var myLatLng = new google.maps.LatLng(place[1], place[2]);
@@ -35,7 +34,7 @@ var places = [
 		        shadow: shadow,
 		        title: place[0],
 		        zIndex: place[3]
-		    });
+		    }
 
   }
 
