@@ -30,6 +30,11 @@ body[orient="landscape"] > *:not(.toolbar) {
 body > *[selected="true"] {
     display: block;
 }
+body > .panelmap {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    background: #c8c8c8 url(pinstripes.png);
+}
 
 a[selected], a:active {
     background-color: #194fdb !important;

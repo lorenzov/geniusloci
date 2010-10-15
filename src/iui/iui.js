@@ -28,29 +28,34 @@ window.iui =
 	animOn: true,	// Slide animation with CSS transition is now enabled by default where supported
 
 	showPage: function(page, backwards)
-	{
-		if (page)
-		{
-			if (currentDialog)
-			{
-				currentDialog.removeAttribute("selected");
-				currentDialog = null;
-			}
+	    {
+	        if (page)
+	        {
+	            if (currentDialog)
+	            {
+	                currentDialog.removeAttribute("selected");
+	                currentDialog = null;
+	            }
 
-			if (hasClass(page, "dialog"))
-				showDialog(page);
-			else
-			{
-				var fromPage = currentPage;
-				currentPage = page;
+	            if (hasClass(page, "dialog"))
+	                showDialog(page);
+	            else
+	            {
+	            if(page.id == 'mapdiv')
+	            {
+	             //google map api function to load map   
+	                 load();	
+		    }
+			var fromPage = currentPage;
+	                currentPage = page;
 
-				if (fromPage)
-					setTimeout(slidePages, 0, fromPage, page, backwards);
-				else
-					updatePage(page, fromPage);
-			}
-		}
-	},
+	                if (fromPage)
+	                    setTimeout(slidePages, 0, fromPage, page, backwards);
+	                else
+	                    updatePage(page, fromPage);
+	            }
+	        }
+	    },
 
 	showPageById: function(pageId)
 	{
