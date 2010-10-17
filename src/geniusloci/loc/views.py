@@ -259,6 +259,12 @@ def mobile_home(request):
 		places = filter_places_by_name(places, request.GET['s'])
 	else:
 		places = find_near(lat, lon, 0.30)
+	
+	for place in places:
+		if place.category == 0:
+			pass
+		else:
+			place.marker = ''
 	c = RequestContext(request, {'places': places, 'lat': lat, 'lon': lon})
 	t = loader.get_template('mobile_home.html')
 	return HttpResponse(t.render(c))	

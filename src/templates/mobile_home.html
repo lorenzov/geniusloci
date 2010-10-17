@@ -19,16 +19,33 @@ src="http://maps.google.com/maps/api/js?sensor=false&region=IT">
     var myOptions = {
       zoom: 16,
       center: latlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+	  disableDefaultUI: true,
     };
     var map = new 
 google.maps.Map(document.getElementById("map_canvas"),myOptions);
 
-	//current location marker
+
+var image_shopping = new google.maps.MarkerImage('http://piazza.s3.amazonaws.com/red_MarkerS.png',
+      
+      new google.maps.Size(20, 34),
+      
+      new google.maps.Point(0,0),
+
+      new google.maps.Point(10, 34));
+
+var image_visit = new google.maps.MarkerImage('http://piazza.s3.amazonaws.com/yellow_MarkerV.png',
+      
+      new google.maps.Size(20, 34),
+      
+      new google.maps.Point(0,0),
+
+      new google.maps.Point(10, 34));
+	
 	var image = new 
 google.maps.MarkerImage('http://www.tourdeturtles.org/markers/placemark_circle.png',
 	      // This marker is 20 pixels wide by 32 pixels tall.
-	      new google.maps.Size(32, 32),
+	      new google.maps.Size(32, 33),
 	      // The origin for this image is 0,0.
 	      new google.maps.Point(0,0),
 
@@ -47,6 +64,12 @@ google.maps.LatLng({{place.geolat}}, {{place.geolong}});
 		        position: myLatLng,
 		        map: map,
 		        title: '{{place.name}}',
+				{%ifequal places.category 1%}
+				icon: image_visit,
+				{%endifequal%}
+				{%ifequal places.category 3%}
+				icon: image_shopping,
+				{%endifequal%}
 				zIndex: {{forloop.counter}}
 		    });
 			
@@ -67,6 +90,7 @@ function(i) {
 <body onload="initializeMap()">
 	<div class="toolbar">
 	         <h1 id="pageTitle">Around You</h1>
+				<a id="backButton" class="button" href="/map/" target="self">Where am I?</a>
 			<a class="button" href="/mobile/geo/?lat={{lat}}&lon={{lon}}" target="_self">List View</a>
 	</div>        
 
