@@ -32,6 +32,7 @@ def rule_category():
 		#Nightlife:
 		if cat.find('Nightlife:') == 0:
 			place.category = 4 #have fun
+		place.save()
 		
 if __name__ == '__main__':
 	rule_category()
