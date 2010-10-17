@@ -71,13 +71,13 @@ google.maps.LatLng({{place.geolat}}, {{place.geolong}});
 		        position: myLatLng,
 		        map: map,
 		        title: '{{place.name}}',
-				{%ifequal places.category 1%}
+				{%ifequal place.category 1%}
 				icon: image_visit,
 				{%endifequal%}
-				{%ifequal places.category 2%}
+				{%ifequal place.category 2%}
 				icon: image_eat,
 				{%endifequal%}
-				{%ifequal places.category 3%}
+				{%ifequal place.category 3%}
 				icon: image_shopping,
 				{%endifequal%}
 				zIndex: {{forloop.counter}}
