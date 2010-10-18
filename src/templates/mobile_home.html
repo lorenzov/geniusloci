@@ -147,7 +147,7 @@ google.maps.LatLng({{place.geolat}}, {{place.geolong}});
 			google.maps.event.addListener(marker, 'click', 
 function(i) {
 				var url = 
-'/mobile/p/{{place.slug}}/{{place.id}}/?from=/mobile/home/?lat={{lat}}&amp;lon={{lon}}';
+'/mobile/p/{{place.slug}}/{{place.id}}/?from=/mobile/home/?lat={{lat}}%26lon={{lon}}';
 			    window.location = url;
 			  });
 

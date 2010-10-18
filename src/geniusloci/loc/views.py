@@ -348,7 +348,7 @@ def mobile_place(request, slug, id):
 	tips = tips[:3]
 	context_data = {'place': place, 'likes': likes, 'tips': tips, 'likecount': likecount, 'tipscount': tipscount,   'lat': lat, 'lon': lon}
 	if 'from' in request.GET:
-		context_data['from'] = request.GET['from'].replace('&amp;', '&')
+		context_data['from'] = request.GET['from'].replace('%26', '&')
 	c = RequestContext(request, context_data)
 	t = loader.get_template('mobile_place.html')
 	return HttpResponse(t.render(c))	
