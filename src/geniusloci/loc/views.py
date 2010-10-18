@@ -346,7 +346,10 @@ def mobile_place(request, slug, id):
 	likes = likes.order_by('-date')[:5]
 	tipscount = tips.count()
 	tips = tips[:3]
-	c = RequestContext(request, {'place': place, 'likes': likes, 'tips': tips, 'likecount': likecount, 'tipscount': tipscount,   'lat': lat, 'lon': lon})
+	context_data = {'place': place, 'likes': likes, 'tips': tips, 'likecount': likecount, 'tipscount': tipscount,   'lat': lat, 'lon': lon}
+	if 'from' in request.GET:
+		context_data['from'] = request.GET['from']
+	c = RequestContext(request, context_data)
 	t = loader.get_template('mobile_place.html')
 	return HttpResponse(t.render(c))	
 	

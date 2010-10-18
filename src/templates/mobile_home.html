@@ -147,7 +147,7 @@ google.maps.LatLng({{place.geolat}}, {{place.geolong}});
 			google.maps.event.addListener(marker, 'click', 
 function(i) {
 				var url = 
-'/mobile/p/{{place.slug}}/{{place.id}}/';
+'/mobile/p/{{place.slug}}/{{place.id}}/?from=/mobile/home/?lat={{lat}}&lon={{long}}';
 			    window.location = url;
 			  });
 
@@ -174,7 +174,6 @@ function(i) {
 <body onload="initializeMap()">
 	<div class="toolbar">
 	         <h1 id="pageTitle">Around You</h1>
-				<a id="button leftButton" class="button" href="/map/" target="self">Where am I?</a>
 			<a class="button" href="/mobile/geo/?lat={{lat}}&lon={{lon}}" target="_self">List View</a>
 	</div>        
 
