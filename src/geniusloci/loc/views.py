@@ -114,7 +114,7 @@ def mobile_list(request):
 	lon = request.GET.get('lon')
 	category = -1
 	if 'cat' in request.GET:
-		category = int(request.GET['category'])
+		category = int(request.GET['cat'])
 	if lat == None or len(lat) == 0:
 		return HttpResponseRedirect('/geolocate/?')	
 	places = find_near(lat, lon, 0.30, False, 20, category)#distance_orig = 0, null_foursquare_categ = False, mult_limit = 20
