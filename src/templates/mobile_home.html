@@ -11,7 +11,34 @@
 src="http://maps.google.com/maps/api/js?sensor=false&region=IT">
 </script>
 <script type="text/javascript">
+  function mapInfo(controlDiv, map) {
+
+  // Set CSS styles for the DIV containing the control
+  // Setting padding to 5 px will offset the control
+  // from the edge of the map
+  controlDiv.style.padding = '5px';
+
+  // Set CSS for the control border
+  var controlUI = document.createElement('DIV');
+  controlUI.style.backgroundColor = 'white';
+  controlUI.style.borderStyle = 'solid';
+  controlUI.style.borderWidth = '2px';
+  controlUI.style.cursor = 'pointer';
+  controlUI.style.textAlign = 'center';
+  controlDiv.appendChild(controlUI);
+
+  // Set CSS for the control interior
+  var controlText = document.createElement('DIV');
+  controlText.style.fontFamily = 'Arial,sans-serif';
+  controlText.style.fontSize = '12px';
+  controlText.style.paddingLeft = '4px';
+  controlText.style.paddingRight = '4px';
+  controlText.innerHTML = '<b>E</b>at, <b>V</b>isit, <b>H</b>ave fun';
+  controlUI.appendChild(controlText);
+
+  // Setup the click event listeners: simply set the map to Chicago
   
+}
 
   function initializeMap(lat, longt) {
 	
@@ -91,6 +118,13 @@ function(i) {
 			  });
 
   		{%endfor%}
+
+
+		var infoControlDiv = document.createElement('DIV');
+		var infoControl = new InfoControl(infoControlDiv, map);
+
+		infoControlDiv.index = 1;
+		map.controls[google.maps.ControlPosition.TOP_RIGHT].push(infoControlDiv);
   }
 </script>
 
