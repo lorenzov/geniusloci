@@ -107,7 +107,20 @@ def search(request):
 	return HttpResponse(t.render(c))
 	
 	
-		
+def mobile_list(request):
+	lat = 0
+	lon = 0
+	lat = request.GET.get('lat')
+	lon = request.GET.get('lon')
+	category = -1
+	if 'cat' in request.GET:
+		category = int(request.GET['category'])
+	if lat == None or len(lat) == 0:
+		return HttpResponseRedirect('/geolocate/?')	
+	places = find_near(lat, lon, 0.30, False, 20, category)#distance_orig = 0, null_foursquare_categ = False, mult_limit = 20
+	c = RequestContext(request, {'venues': places, 'lat': lat, 'lon': lon})
+	t = loader.get_template('geo.html')
+	return HttpResponse(t.render(c))	
 	
 def geo(request):
 	lat = 0
@@ -365,7 +378,7 @@ def mobile_mapping(request, id):
 	
 	
 #500m = 0.33 miles ca
-def find_near(mylat, mylong, distance, distance_orig = 0, null_foursquare_categ = False, mult_limit = 20):
+def find_near(mylat, mylong, distance, distance_orig = 0, null_foursquare_categ = False, mult_limit = 20, category = -1):
 	mylong = float(str(mylong))
 	mylat = float(str(mylat))
 	lon1 = mylong - distance/math.fabs(math.cos(math.radians(mylat))*69)
@@ -377,6 +390,8 @@ def find_near(mylat, mylong, distance, distance_orig = 0, null_foursquare_categ 
 	lat2 = mylat+(distance/69)
 	
 	places = Place.objects.filter(geolong__gte = str(lon1), geolong__lte = str(lon2), geolat__gte = str(lat1), geolat__lte = str(lat2), foursquare_category__isnull = False)
+	if category >= 0:
+		places.filter(category__exact = category)
 
 	if places.count() > 10 and mult_limit <= 20:
 		return places
@@ -385,7 +400,7 @@ def find_near(mylat, mylong, distance, distance_orig = 0, null_foursquare_categ 
 	elif distance > distance_orig * mult_limit: #mult_limit times the original distance
 		return []
 	logging.debug('new find near query ' + str(distance))
-	return find_near(mylat, mylong, distance * 2, distance_orig)
+	return find_near(mylat, mylong, distance * 2, distance_orig, null_foursquare_cated, mult_limit, category)
 
 def filter_places_by_name(places, name):
 	return places.filter(name__icontains = name)
