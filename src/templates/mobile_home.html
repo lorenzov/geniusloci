@@ -161,7 +161,7 @@ function(i) {
 		map.controls[google.maps.ControlPosition.TOP_RIGHT].push(infoControlDiv);
 		
 		var locateControlDiv = document.createElement('DIV');
-		var locateControl = new InfoControl(infoControlDiv, map);
+		var locateControl = new LocateControl(infoControlDiv, map);
 
 		locateControlDiv.index = 1;
 		map.controls[google.maps.ControlPosition.TOP_RIGHT].push(locateControlDiv);
