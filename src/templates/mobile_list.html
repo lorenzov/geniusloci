@@ -2,7 +2,7 @@
 	
 
 	{%for place in venues%}
-    <<li><a href="/mobile/p/{{place.slug}}/{{place.id}}/?lat={{lat}}&lon={{lon}}" target="_self">{{place.name}}</a></li>
+    <li><a href="/mobile/p/{{place.slug}}/{{place.id}}/?lat={{lat}}&lon={{lon}}" target="_self">{{place.name}}</a></li>
     {%endfor%}
 
 </ul>
