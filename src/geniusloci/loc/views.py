@@ -117,7 +117,7 @@ def mobile_list(request):
 		category = int(request.GET['cat'])
 	if lat == None or len(lat) == 0:
 		return HttpResponseRedirect('/geolocate/?')	
-	places = find_near(lat, lon, 0.30, False, 20, category)#distance_orig = 0, null_foursquare_categ = False, mult_limit = 20
+	places = find_near(lat, lon, 0.30, 0.30, False, 20, category)#distance_orig = 0, null_foursquare_categ = False, mult_limit = 20
 	c = RequestContext(request, {'venues': places, 'lat': lat, 'lon': lon})
 	t = loader.get_template('mobile_list.html')
 	return HttpResponse(t.render(c))	
@@ -397,8 +397,9 @@ def find_near(mylat, mylong, distance, distance_orig = 0, null_foursquare_categ 
 	lat2 = mylat+(distance/69)
 	
 	places = Place.objects.filter(geolong__gte = str(lon1), geolong__lte = str(lon2), geolat__gte = str(lat1), geolat__lte = str(lat2), foursquare_category__isnull = False)
+	logging.debug('category ' + str(category))
 	if category >= 0:
-		logging.debug('filtering by categ ' + str(categ))
+		logging.debug('filtering by categ ' + str(category))
 		places.filter(category__exact = category)
 
 	if places.count() > 10 and mult_limit <= 20:
