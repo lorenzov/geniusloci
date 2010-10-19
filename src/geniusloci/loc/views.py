@@ -117,10 +117,10 @@ def mobile_list(request):
 	if 'cat' in request.GET:
 		category = int(request.GET['cat'])
 	if 's' in request.GET:
-		if 's' in request.GET:
+	
 			#filtering search by name
-			places = find_near(lat, lon, 0.30, mult_limit = 80)
-			places = filter_places_by_name(places, request.GET['s'])
+		places = find_near(lat, lon, 0.30, mult_limit = 80)
+		places = filter_places_by_name(places, request.GET['s'])
 	else:
 		places = find_near(lat, lon, 0.30, 0.30, False, 20, category)#distance_orig = 0, null_foursquare_categ = False, mult_limit = 20
 		
@@ -416,7 +416,7 @@ def find_near(mylat, mylong, distance, distance_orig = 0, null_foursquare_categ 
 	if distance_orig == 0:
 		distance_orig = distance
 	elif distance > distance_orig * mult_limit: #mult_limit times the original distance
-		return []
+		return places
 	logging.debug('new find near query ' + str(distance))
 	return find_near(mylat, mylong, distance * 2, distance_orig, null_foursquare_categ, mult_limit, category)
 
