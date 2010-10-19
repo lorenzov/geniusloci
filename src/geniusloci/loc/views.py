@@ -113,11 +113,19 @@ def mobile_list(request):
 	lat = request.GET.get('lat')
 	lon = request.GET.get('lon')
 	category = -1
+	places = []
 	if 'cat' in request.GET:
 		category = int(request.GET['cat'])
+	if 's' in request.GET:
+		if 's' in request.GET:
+			#filtering search by name
+			places = find_near(lat, lon, 0.30, mult_limit = 80)
+			places = filter_places_by_name(places, request.GET['s'])
+	else:
+		places = find_near(lat, lon, 0.30, 0.30, False, 20, category)#distance_orig = 0, null_foursquare_categ = False, mult_limit = 20
+		
 	if lat == None or len(lat) == 0:
 		return HttpResponseRedirect('/geolocate/?')	
-	places = find_near(lat, lon, 0.30, 0.30, False, 20, category)#distance_orig = 0, null_foursquare_categ = False, mult_limit = 20
 	c = RequestContext(request, {'venues': places, 'lat': lat, 'lon': lon})
 	t = loader.get_template('mobile_list.html')
 	return HttpResponse(t.render(c))	
