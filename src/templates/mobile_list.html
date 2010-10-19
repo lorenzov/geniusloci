@@ -1,3 +1,26 @@
+{%if search%}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>GL Demo</title>
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+<style type="text/css" media="screen">@import "/static/iui.css";</style>
+<script type="application/x-javascript" src="/static/iui.js"></script>
+<script type="text/javascript"
+    src="http://maps.google.com/maps/api/js?sensor=true">
+</script>
+</head>
+<body>
+
+<div class="toolbar">
+    <h1 id="pageTitle">Places near you</h1>
+    <a class="button leftButton"  href="/geolocate/?" target="_self">Where am I?</a>
+    <a class="button" href="#searchForm">Search</a>
+</div>
+
+{%endif%}
+
 <ul id="home" title="Places" selected="true">
 	
 
@@ -6,3 +29,24 @@
     {%endfor%}
 
 </ul>
+
+{%if search%}
+<form id="searchForm" class="dialog"  action="/mobile/list/?lat={{lat}}&lon={{lon}}" target="_self">
+    <fieldset>
+        <h1>Search for a place</h1>
+        <a class="button leftButton" type="cancel">Cancel</a>
+        <a class="button blueButton" type="submit">Search</a>
+        
+        <label>Name:</label>
+        <input id="s" type="text" name="s"/>
+        <input type="hidden" name="lat" value="{{lat}}"/><input type="hidden" name="lon" value="{{lon}}"/>
+    </fieldset>
+
+</form>
+
+
+
+</body>
+</html>
+
+{%endif%}

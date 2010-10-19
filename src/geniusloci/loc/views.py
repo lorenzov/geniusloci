@@ -125,8 +125,11 @@ def mobile_list(request):
 		places = find_near(lat, lon, 0.30, 0.30, False, 20, category)#distance_orig = 0, null_foursquare_categ = False, mult_limit = 20
 		
 	if lat == None or len(lat) == 0:
-		return HttpResponseRedirect('/geolocate/?')	
-	c = RequestContext(request, {'venues': places, 'lat': lat, 'lon': lon})
+		return HttpResponseRedirect('/geolocate/?')
+	context_dict = {'venues': places, 'lat': lat, 'lon': lon}
+	if 's'	in request.GET:
+		context_dict['search'] = True
+	c = RequestContext(request, context_dict)
 	t = loader.get_template('mobile_list.html')
 	return HttpResponse(t.render(c))	
 	
