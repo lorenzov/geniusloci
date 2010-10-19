@@ -122,7 +122,7 @@ def mobile_list(request):
 	t = loader.get_template('geo.html')
 	return HttpResponse(t.render(c))	
 	
-def geo(request):
+def mobile_home(request):
 	lat = 0
 	lon = 0
 	lat = request.GET.get('lat')
@@ -197,13 +197,10 @@ def geo(request):
 			
 			
 	
-def mobile_map(request):
-	c = RequestContext(request, {})
-	t = loader.get_template('mobile_geolocate.html')
-	return HttpResponse(t.render(c))
+
 	
 
-def mobile_home(request):
+def mobile_map(request):
 	lat = 0
 	lon = 0
 	lat = request.GET.get('lat')
@@ -366,15 +363,7 @@ def mobile_place(request, slug, id):
 	t = loader.get_template('mobile_place.html')
 	return HttpResponse(t.render(c))	
 	
-def mobile_mapping(request, id):
-	place = None
-	try:
-		place = Place.objects.get(pk = id)
-	except:
-		return HttpResponseServerError(id)
-	c = RequestContext(request, {'place': place})
-	t = loader.get_template('mobile_map.html')
-	return HttpResponse(t.render(c))		
+	
 	
 	
 #500m = 0.33 miles ca

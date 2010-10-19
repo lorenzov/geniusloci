@@ -33,7 +33,6 @@ urlpatterns = patterns('',
 	#mobile site
 	(r'^mobile/geo/$', 'geniusloci.loc.views.geo'),
 	(r'^mobile/view/$', 'geniusloci.loc.views.mobile_view'),
-	(r'^mobile/map/(?P<id>\d+)/$', 'geniusloci.loc.views.mobile_mapping'),
 	(r'^mobile/list/$', 'geniusloci.loc.views.mobile_list'),
 	(r'^mobile/p/(?P<slug>).*/(?P<id>\d+)/$', 'geniusloci.loc.views.mobile_place'),
 	(r'^static/(?P<path>.*)$', 'django.views.static.serve',
