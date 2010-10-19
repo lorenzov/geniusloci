@@ -276,7 +276,7 @@ def mobile_map(request):
 		else:
 			place.marker = ''
 	c = RequestContext(request, {'places': places, 'lat': lat, 'lon': lon})
-	t = loader.get_template('mobile_home.html')
+	t = loader.get_template('mobile_map.html')
 	return HttpResponse(t.render(c))	
 
 

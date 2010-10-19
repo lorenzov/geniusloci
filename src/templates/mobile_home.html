@@ -1,185 +1,51 @@
-<!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<title>GL Demo</title>
 
-
-
-<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
 <style type="text/css" media="screen">@import "/static/iui.css";</style>
 <script type="application/x-javascript" src="/static/iui.js"></script>
-<script type="text/javascript" 
-src="http://maps.google.com/maps/api/js?sensor=false&region=IT">
+<script type="text/javascript"
+    src="http://maps.google.com/maps/api/js?sensor=true">
 </script>
-<script type="text/javascript">
-
-  function LocateControl(controlDiv, map) {
-
-  // Set CSS styles for the DIV containing the control
-  // Setting padding to 5 px will offset the control
-  // from the edge of the map
-  controlDiv.style.padding = '5px';
-
-  // Set CSS for the control border
-  var controlUI = document.createElement('DIV');
-  controlUI.style.backgroundColor = 'white';
-  controlUI.style.borderStyle = 'solid';
-  controlUI.style.borderWidth = '2px';
-  controlUI.style.cursor = 'pointer';
-  controlUI.style.textAlign = 'center';
-  controlDiv.appendChild(controlUI);
-
-  // Set CSS for the control interior
-  var controlText = document.createElement('DIV');
-  controlText.style.fontFamily = 'Arial,sans-serif';
-  controlText.style.fontSize = '12px';
-  controlText.style.paddingLeft = '4px';
-  controlText.style.paddingRight = '4px';
-  controlText.innerHTML = 'Where am I?';
-  controlUI.appendChild(controlText);
-
-  // Setup the click event listeners: simply set the map to Chicago
-google.maps.event.addDomListener(controlUI, 'click', function() {
-    window.location = '/map/';
-  });
-  
-}
-
-
-  function InfoControl(controlDiv, map) {
-
-  // Set CSS styles for the DIV containing the control
-  // Setting padding to 5 px will offset the control
-  // from the edge of the map
-  controlDiv.style.padding = '5px';
-
-  // Set CSS for the control border
-  var controlUI = document.createElement('DIV');
-  controlUI.style.backgroundColor = 'white';
-  controlUI.style.borderStyle = 'solid';
-  controlUI.style.borderWidth = '2px';
-  controlUI.style.cursor = 'pointer';
-  controlUI.style.textAlign = 'center';
-  controlDiv.appendChild(controlUI);
-
-  // Set CSS for the control interior
-  var controlText = document.createElement('DIV');
-  controlText.style.fontFamily = 'Arial,sans-serif';
-  controlText.style.fontSize = '12px';
-  controlText.style.paddingLeft = '4px';
-  controlText.style.paddingRight = '4px';
-  controlText.innerHTML = '<b>S</b>hop,<b>E</b>at, <b>V</b>isit, <b>H</b>ave fun';
-  controlUI.appendChild(controlText);
-
-  // Setup the click event listeners: simply set the map to Chicago
-  
-}
-
-  function initializeMap(lat, longt) {
-	
-    var latlng = new google.maps.LatLng({{lat}}, {{lon}});
-    var myOptions = {
-      zoom: 16,
-      center: latlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-	  disableDefaultUI: true,
-    };
-    var map = new 
-google.maps.Map(document.getElementById("map_canvas"),myOptions);
-
-
-var image_eat = new google.maps.MarkerImage('http://piazza.s3.amazonaws.com/paleblue_MarkerE.png',
-      
-      new google.maps.Size(20, 34),
-      
-      new google.maps.Point(0,0),
-
-      new google.maps.Point(10, 34));
-var image_shopping = new google.maps.MarkerImage('http://piazza.s3.amazonaws.com/red_MarkerS.png',
-      
-      new google.maps.Size(20, 34),
-      
-      new google.maps.Point(0,0),
-
-      new google.maps.Point(10, 34));
-
-var image_visit = new google.maps.MarkerImage('http://piazza.s3.amazonaws.com/yellow_MarkerV.png',
-      
-      new google.maps.Size(20, 34),
-      
-      new google.maps.Point(0,0),
-
-      new google.maps.Point(10, 34));
-	
-	var image = new 
-google.maps.MarkerImage('http://www.tourdeturtles.org/markers/placemark_circle.png',
-	      // This marker is 20 pixels wide by 32 pixels tall.
-	      new google.maps.Size(32, 33),
-	      // The origin for this image is 0,0.
-	      new google.maps.Point(0,0),
-
-	      new google.maps.Point(0, 32));
-	var marker = new google.maps.Marker({
-		position: latlng,
-		map: map,
-		title: 'Current location',
-		icon: image,
-		zIndex: 0
-	});
-		{%for place in places%}
-		    var myLatLng = new 
-google.maps.LatLng({{place.geolat}}, {{place.geolong}});
-		    var marker = new google.maps.Marker({
-		        position: myLatLng,
-		        map: map,
-		        title: '{{place.name}}',
-				{%ifequal place.category 1%}
-				icon: image_visit,
-				{%endifequal%}
-				{%ifequal place.category 2%}
-				icon: image_eat,
-				{%endifequal%}
-				{%ifequal place.category 3%}
-				icon: image_shopping,
-				{%endifequal%}
-				zIndex: {{forloop.counter}}
-		    });
-			
-			google.maps.event.addListener(marker, 'click', 
-function(i) {
-				var url = 
-'/mobile/p/{{place.slug}}/{{place.id}}/?from=/mobile/home/?lat={{lat}}%26lon={{lon}}';
-			    window.location = url;
-			  });
-
-  		{%endfor%}
-
-
-		var infoControlDiv = document.createElement('DIV');
-		var infoControl = new InfoControl(infoControlDiv, map);
-
-		infoControlDiv.index = 1;
-		map.controls[google.maps.ControlPosition.TOP_RIGHT].push(infoControlDiv);
-		
-		var locateControlDiv = document.createElement('DIV');
-		var locateControl = new LocateControl(infoControlDiv, map);
-
-		locateControlDiv.index = 1;
-		map.controls[google.maps.ControlPosition.TOP_RIGHT].push(locateControlDiv);
-  }
-</script>
-
-
-
 </head>
-<body onload="initializeMap()">
-	<div class="toolbar">
-	         <h1 id="pageTitle">Around You</h1>
-			<a class="button" href="/mobile/geo/?lat={{lat}}&lon={{lon}}" target="_self">List View</a>
-	</div>        
+<body>
 
-	<div class="panelmap" id="mapdiv" selected="true">
-	<div id="map_canvas" style="width:320px;height:480px;"></div>
-	</div>
+<div class="toolbar">
+    <h1 id="pageTitle">Places near you</h1>
+    <a class="button leftButton"  href="/geolocate/?" target="_self">Where am I?</a>
+    <a class="button" href="#searchForm">Search</a>
+</div>
+
+<ul id="home" title="Places" selected="true">
+	
+	<li><a href="/mobile/map/?lat={{lat}}&lon={{lon}}"><b>Map</b></a></li>
+	<li><a href="/mobile/home/cat/1/?lat={{lat}}&lon={{lon}}">Visit</a></li>
+	<li><a href="/mobile/home/cat/2/?lat={{lat}}&lon={{lon}}">Eat</a></li>
+	<li><a href="/mobile/home/cat/3/?lat={{lat}}&lon={{lon}}">Shop</a></li>
+	<li><a href="/mobile/home/cat/4/?lat={{lat}}&lon={{lon}}">Hang out</a></li>
+	{%for place in venues%}
+    <li><a href="/mobile/p/{{place.slug}}/{{place.id}}/?lat={{lat}}&lon={{lon}}" target="_self">{{place.name}}</a></li>
+    {%endfor%}
+
+</ul>
+
+
+<form id="searchForm" class="dialog"  action="/mobile/geo/?lat={{lat}}&lon={{lon}}" target="_self">
+    <fieldset>
+        <h1>Search for a place</h1>
+        <a class="button leftButton" type="cancel">Cancel</a>
+        <a class="button blueButton" type="submit">Search</a>
+        
+        <label>Name:</label>
+        <input id="s" type="text" name="s"/>
+        <input type="hidden" name="lat" value="{{lat}}"/><input type="hidden" name="lon" value="{{lon}}"/>
+    </fieldset>
+
+</form>
+
+
+
 </body>
-
+</html>
 
