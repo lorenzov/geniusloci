@@ -197,7 +197,25 @@ def mobile_home(request):
 			
 			
 	
-
+def mobile_home_list(request):
+	lat = 0
+	lon = 0
+	lat = request.GET.get('lat')
+	lon = request.GET.get('lon')
+	cat = -1
+	if 'cat' in request.GET:
+		cat = int(request.GET['cat'])
+	places = []
+	if 's' in request.GET:
+		#filtering search by name
+		places = find_near(lat, lon, 0.30, mult_limit = 80)
+		places = filter_places_by_name(places, request.GET['s'])
+	else:
+		places = find_near(lat, lon, 0.30)
+		places = find_near(lat, lon, 0.30, 0, False, 20, cat)
+	c = RequestContext(request, {'venues': places, 'lat': lat, 'lon': lon})
+	t = loader.get_template('mobile_home.html')
+	return HttpResponse(t.render(c))
 	
 
 def mobile_map(request):
