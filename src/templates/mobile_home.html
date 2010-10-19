@@ -19,13 +19,13 @@
 
 <ul id="home" title="Places" selected="true">
 	
-	<li><a href="/mobile/map/?lat={{lat}}&lon={{lon}}"><b>Map</b></a></li>
+	<li><a href="/mobile/map/?lat={{lat}}&lon={{lon}}" target="_self"><b>Map</b></a></li>
 	<li><a href="/mobile/home/cat/1/?lat={{lat}}&lon={{lon}}">Visit</a></li>
 	<li><a href="/mobile/home/cat/2/?lat={{lat}}&lon={{lon}}">Eat</a></li>
 	<li><a href="/mobile/home/cat/3/?lat={{lat}}&lon={{lon}}">Shop</a></li>
 	<li><a href="/mobile/home/cat/4/?lat={{lat}}&lon={{lon}}">Hang out</a></li>
 	{%for place in venues%}
-    <li><a href="/mobile/p/{{place.slug}}/{{place.id}}/?lat={{lat}}&lon={{lon}}" target="_self">{{place.name}}</a></li>
+    <!--><li><a href="/mobile/p/{{place.slug}}/{{place.id}}/?lat={{lat}}&lon={{lon}}" target="_self">{{place.name}}</a></li>-->
     {%endfor%}
 
 </ul>
