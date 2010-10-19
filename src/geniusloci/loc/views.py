@@ -119,7 +119,7 @@ def mobile_list(request):
 		return HttpResponseRedirect('/geolocate/?')	
 	places = find_near(lat, lon, 0.30, False, 20, category)#distance_orig = 0, null_foursquare_categ = False, mult_limit = 20
 	c = RequestContext(request, {'venues': places, 'lat': lat, 'lon': lon})
-	t = loader.get_template('geo.html')
+	t = loader.get_template('mobile_list.html')
 	return HttpResponse(t.render(c))	
 	
 def mobile_home(request):
