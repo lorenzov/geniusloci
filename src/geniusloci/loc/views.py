@@ -214,7 +214,7 @@ def mobile_home_list(request):
 		places = find_near(lat, lon, 0.30)
 		places = find_near(lat, lon, 0.30, 0, False, 20, cat)
 	c = RequestContext(request, {'venues': places, 'lat': lat, 'lon': lon})
-	t = loader.get_template('mobile_home.html')
+	t = loader.get_template('mobile_list.html')
 	return HttpResponse(t.render(c))
 	
 
