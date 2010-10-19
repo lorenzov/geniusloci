@@ -7,7 +7,7 @@ def place_cat(place_id):
 	place = Place.objects.get(pk = id)
 	cat = place.foursquare_category
 	if cat is None:
-		continue
+		return
 	print cat
 	if cat.find('Arts & Entertainment:') == 0:
 		place.category = 1 #visit
