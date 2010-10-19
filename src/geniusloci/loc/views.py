@@ -385,6 +385,7 @@ def mobile_place(request, slug, id):
 	
 	
 #500m = 0.33 miles ca
+#places = find_near(lat, lon, 0.30, 0.30, False, 20, category)
 def find_near(mylat, mylong, distance, distance_orig = 0, null_foursquare_categ = False, mult_limit = 20, category = -1):
 	mylong = float(str(mylong))
 	mylat = float(str(mylat))
@@ -397,9 +398,9 @@ def find_near(mylat, mylong, distance, distance_orig = 0, null_foursquare_categ 
 	lat2 = mylat+(distance/69)
 	
 	places = Place.objects.filter(geolong__gte = str(lon1), geolong__lte = str(lon2), geolat__gte = str(lat1), geolat__lte = str(lat2), foursquare_category__isnull = False)
-	logging.debug('category ' + str(category))
+	print 'category ' + str(category)
 	if category >= 0:
-		logging.debug('filtering by categ ' + str(category))
+		print 'filtering by categ ' + str(category)
 		places.filter(category__exact = category)
 
 	if places.count() > 10 and mult_limit <= 20:
