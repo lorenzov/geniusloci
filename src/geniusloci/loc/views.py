@@ -401,7 +401,7 @@ def find_near(mylat, mylong, distance, distance_orig = 0, null_foursquare_categ 
 	print 'category ' + str(category)
 	if category >= 0:
 		print 'filtering by categ ' + str(category)
-		places.filter(category__exact = category)
+		places = places.filter(category__exact = category)
 
 	if places.count() > 10 and mult_limit <= 20:
 		return places
