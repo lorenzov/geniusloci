@@ -4,7 +4,7 @@ from geniusloci.loc.models import *
 
 
 def place_cat(place_id):
-	place = Place.objects.get(pk = id)
+	place = Place.objects.get(pk = place_id)
 	cat = place.foursquare_category
 	if cat is None:
 		return
