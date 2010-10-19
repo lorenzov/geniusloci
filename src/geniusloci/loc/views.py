@@ -418,7 +418,7 @@ def find_near(mylat, mylong, distance, distance_orig = 0, null_foursquare_categ 
 	elif distance > distance_orig * mult_limit: #mult_limit times the original distance
 		return []
 	logging.debug('new find near query ' + str(distance))
-	return find_near(mylat, mylong, distance * 2, distance_orig, null_foursquare_cated, mult_limit, category)
+	return find_near(mylat, mylong, distance * 2, distance_orig, null_foursquare_categ, mult_limit, category)
 
 def filter_places_by_name(places, name):
 	return places.filter(name__icontains = name)
