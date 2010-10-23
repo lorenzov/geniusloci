@@ -203,7 +203,7 @@ def mobile_home(request):
 		places = filter_places_by_name(places, request.GET['s'])
 	else:
 		places = find_near(lat, lon, 0.30)
-	c = RequestContext(request, {'venues': places, 'lat': lat, 'lon': lon})
+	c = RequestContext(request, {'venues': places.filter(points__gt = 0).order_by('-points')[:4], 'lat': lat, 'lon': lon})
 	t = loader.get_template('mobile_home.html')
 	return HttpResponse(t.render(c))
 			
