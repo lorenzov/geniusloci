@@ -97,7 +97,7 @@ def locate(request):
 	except Exception, ex:
 		return HttpResponse('error ' + query + ' '+ ex.message)
 		
-	return HttpResponseRedirect('/mobile/geo/?lat=' + str(lat) + '&lon=' + str(lon))
+	return HttpResponseRedirect('/mobile/home/?lat=' + str(lat) + '&lon=' + str(lon))
 
 def search(request):
 	query = request.GET['s']

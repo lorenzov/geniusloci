@@ -15,6 +15,7 @@ class Place(models.Model):
 	foursquare_category = models.CharField(max_length = 255, blank = True, null = True)
 	validated = models.BooleanField(default = False)
 	category = models.SmallIntegerField(null = True, blank = True, default = 0, db_index = True)
+	points = models.SmallIntegerField(default = 0)
 	def slug(self):
 		if self.city != None:
 			return slugify(self.city + ' ' +self.name)
