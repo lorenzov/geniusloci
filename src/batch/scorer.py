@@ -5,6 +5,7 @@ from geniusloci.loc.models import *
 def score_like(like):
 	place = Place.objects.get(pk = like.place.id)
 	place.points = place.points + 1
+	print place.name
 	place.save()
 	
 	
@@ -22,5 +23,5 @@ def reset_points():
 	pass	
 		
 if __name__ == '__main__':
-	reset_points()
+
 	score_places()
