@@ -199,7 +199,7 @@ def mobile_home(request):
 	places = []
 	if 's' in request.GET:
 		#filtering search by name
-		places = find_near(lat, lon, 0.30, mult_limit = 80)
+		places = find_near(lat, lon, 0.30, mult_limit = 100)
 		places = filter_places_by_name(places, request.GET['s'])
 	else:
 		places = find_near(lat, lon, 0.30)
