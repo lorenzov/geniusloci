@@ -350,6 +350,8 @@ def services_like(request, id):
 			like = Like(place = place)
 			like.user = request.user
 			like.save()
+			place.points = place.points += 1
+			place.save()
 		pass
 	return HttpResponseRedirect("/p/" + str(place.slug()) + "/" + str(place.id) + "/")
 	
@@ -362,6 +364,8 @@ def services_mobile_like(request, id):
 			like = Like(place = place)
 			like.user = request.user
 			like.save()
+			place.points = place.points += 1
+			place.save()
 		pass
 	return HttpResponseRedirect("/mobile/p/" + str(place.slug()) + "/" + str(place.id) + "/")
 
