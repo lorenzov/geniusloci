@@ -3,8 +3,8 @@ import time
 import random
 
 c = Client()
-lat = 45.4450
-lon = 9.152
+lat = 45.49561
+lon = 9.13925
 
 
 for i in range(0,100):
