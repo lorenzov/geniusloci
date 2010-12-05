@@ -47,10 +47,7 @@
 	
 	<br/>
 	
-	Recent reviews by our users:<br/>
-	{%for tip in tips%}
-	<img src='https://graph.facebook.com/{{tip.user.username}}/picture' class=" fb_profile_pic_rendered FB_ElementReady"/><em>{{tip.text}}</em>&nbsp;<small>{{tip.date|timesince}}</small><br/>
-	{%endfor%}<br/>
+	<br/>
 	{% if not user.is_authenticated %}
 	<a href="https://graph.facebook.com/oauth/authorize?client_id=129708490411788&redirect_uri=http://www.euproweb.eu/login/?backTo=/p/{{place.slug}}/{{place.id}}/&scope=publish_stream,email&display=popup">
 	  <img src="http://developers.facebook.com/images/devsite/login-button.png" border="0"/></a>{%endif%}
@@ -64,9 +61,27 @@
 		{%endif%}<br/><br/>
 		
 		People who like this place:<br/>
-		{%for like in likes%}<img src='https://graph.facebook.com/{{like.user.username}}/picture' class=" fb_profile_pic_rendered FB_ElementReady"/>{%endfor%}</div>
+		{%for like in likes%}<img src='https://graph.facebook.com/{{like.user.username}}/picture' class=" fb_profile_pic_rendered FB_ElementReady"/>{%endfor%}
+		
+	</div>
 			
-			<div id="map_canvas" style="width:500px; height:350px"></div>
+			
+	<div id="tips">
+		
+		
+		Recent reviews by our users:<br/>
+		{%for tip in tips%}
+		<img src='https://graph.facebook.com/{{tip.user.username}}/picture' class=" fb_profile_pic_rendered FB_ElementReady"/><em>{{tip.text}}</em>&nbsp;<small>{{tip.date|timesince}}</small><br/>
+		{%endfor%}<br/>
+		Write your tip about this place:<br/>
+		<form action="/services/tip/{{place.id}}/">
+			<textarea columns="10" rows="5" name="t"></textarea><br/>
+			<input type="submit" value="Save"/>
+		</form>
+		
+	</div>		
+			
+	<div id="map_canvas" style="width:500px; height:350px"></div>
 	
 	
 	
