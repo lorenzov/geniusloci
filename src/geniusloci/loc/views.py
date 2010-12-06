@@ -319,7 +319,7 @@ def place(request, slug, id):
 		
 	likes = Like.objects.filter(place__exact = place)
 	tips = Tip.objects.filter(place__exact = place)
-	nearplaces = find_near(lat, lon, 0.10, 0.10, False, 3)
+	nearplaces = find_near(place.geolat, place.geolong, 0.10, 0.10, False, 3)
 	
 	c = RequestContext(request, {'place': place, 'likes': likes,'tips': tips, 'nearplaces': nearplaces, })
 	t = loader.get_template('place.html')
