@@ -98,6 +98,17 @@
 	  //photo_ex_widget.setPosition(0);
 	</script>
 	
+	
+	<div id="near">
+		
+		Near this place:<br/>
+		<ul>
+			{%for place in nearplaces%}
+			<li><a href="/p/{{place.slug}}/{{place.id}}/">{{place.name}}</a><br/></li>
+			{%endfor%}
+		</ul>
+			
+	</div>
 	<script> 
 
 	function InitConnected(){
