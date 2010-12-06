@@ -115,12 +115,12 @@
 		<fb:like href="http://www.euproweb.eu/p/{{place.slug}}/{{place.id}}/" show_faces="true" width="300"></fb:like>
 	</div>
 	<script> 
-
+	FB.Event.subscribe('edge.create', function(href, widget) {
+	    alert('You liked ' + href, widget);
+	  });
 	function InitConnected(){
 		
-		FB.Event.subscribe('edge.create', function(href, widget) {
-		    alert('You liked ' + href, widget);
-		  });
+		
 		}
 
 		function InitNotConnected(){
